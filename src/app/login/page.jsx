@@ -1,0 +1,66 @@
+import Link from 'next/link';
+import React from 'react';
+import { FaGoogle } from "react-icons/fa";
+const page = () => {
+    return (
+        <div>
+            <form className="space-y-5 max-w-[35%] mx-auto my-25 border border-[#4edea3]/20 rounded-xl px-8 py-8 bg-[#00170f]/50 backdrop-blur-lg">
+
+                <h1 className="text-3xl font-bold text-center text-[#4edea3]">Log In</h1>
+
+                {/* Vault Identity / Email */}
+                <div className="flex flex-col gap-1.5">
+                    <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-md font-bold uppercase tracking-[0.1em]">Enter Your Email</label>
+                    <div className="relative">
+                        <input
+                            className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/25 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-12 placeholder:text-[#bbcabf]/30 pl-10 pr-4 text-sm transition-all font-['JetBrains_Mono',monospace]"
+                            placeholder="identity@domain.sec"
+                            required
+                            type="email"
+                        />
+                    </div>
+                </div>
+
+                {/* Passkey */}
+                <div className="flex flex-col gap-1.5">
+                    <div className="flex justify-between items-center">
+                        <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-md font-bold uppercase tracking-[0.1em]">Password</label>
+
+                    </div>
+                    <div className="relative">
+                        <input
+                            className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/25 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-none h-12 placeholder:text-[#bbcabf]/30 pl-10 pr-4 text-md transition-all"
+                            placeholder="••••••••••••"
+                            required
+                            type="password"
+                        />
+                    </div>
+                </div>
+
+
+                {/* Authorize Button */}
+                <button
+                    className="w-full bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-md uppercase tracking-wider h-12 rounded-xl shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:shadow-[0_0_25px_rgba(78,222,163,0.4)] active:scale-[0.98] transition-all cursor-pointer mt-2"
+                    type="submit"
+                >
+                    Log In
+                </button>
+                <h1 className='text-center text-2xl'>or</h1>
+                <button
+                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-md uppercase tracking-wider h-12 rounded-xl shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:shadow-[0_0_25px_rgba(78,222,163,0.4)] active:scale-[0.98] transition-all cursor-pointer mt-2"
+                >
+                    <FaGoogle /> Continue with Google
+                </button>
+
+                <div className="">
+                    Don't have an account?
+                    <Link href="/signup" className="text-[#4edea3] ml-2 hover:underline">
+                        Register
+                    </Link>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default page;

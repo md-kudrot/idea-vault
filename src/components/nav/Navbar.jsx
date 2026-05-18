@@ -53,24 +53,23 @@ const Navbar = () => {
 
                     <div className='flex items-center justify-center gap-2'>
                         {/*login button */}
-                        
-                            <Link
-                                href="/login"
-                                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
-                            >
+                        <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                            <Link href="/login">
                                 Log In
                             </Link>
-                        
-                  
-                        
+                        </button>
+
+
+
+
 
                         {/* signup button */}
-                        <Link
-                            href="/signup"
-                            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
-                        >
-                            Sign Up
-                        </Link>
+                        <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                            <Link href="/signup">
+                                Sign Up
+                            </Link>
+                        </button>
+
 
                     </div>
                     {/* User avatar */}

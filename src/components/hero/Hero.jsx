@@ -33,7 +33,7 @@ const Hero = () => {
         return () => clearInterval(interval);
     });
 
-    console.log(currentSlide)
+    // console.log(currentSlide)
 
 
 
