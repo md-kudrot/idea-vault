@@ -1,8 +1,10 @@
 'use client';
 
+import { authClient } from '@/lib/auth-client';
 import { Button } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 
 const navLinks = [
@@ -15,6 +17,20 @@ const navLinks = [
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const {
+        data: session,
+    } = authClient.useSession()
+    // console.log(session);
+
+    const user = session?.user;
+    // console.log(user);
+
+    const handleLogout = async () => {
+        await authClient.signOut();
+
+        redirect('/login');
+    }
 
     return (
         <div className="sticky top-0 z-50 py-4 bg-[#00170f]/85 backdrop-blur-xl border-b border-[#4edea3]/10 transition-all duration-300">
@@ -50,42 +66,55 @@ const Navbar = () => {
 
                 {/* Right side: Avatar + Hamburger */}
                 <div className="flex items-center gap-3">
-
-                    <div className='flex items-center justify-center gap-2'>
-                        {/*login button */}
-                        <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
-                            <Link href="/login">
-                                Log In
-                            </Link>
-                        </button>
-
-
+                    <>
+                        {!user ? <div className='flex items-center justify-center gap-2'>
+                            {/*login button */}
+                            <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                                <Link href="/login">
+                                    Log In
+                                </Link>
+                            </button>
 
 
 
-                        {/* signup button */}
-                        <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
-                            <Link href="/signup">
-                                Sign Up
-                            </Link>
-                        </button>
 
 
-                    </div>
-                    {/* User avatar */}
-                    <div className='hidden'>
+                            {/* signup button */}
+                            <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                                <Link href="/signup">
+                                    Sign Up
+                                </Link>
+                            </button>
 
-                        <div className="w-10 h-10 rounded-full border border-[#4edea3]/30 p-0.5 hover:border-[#4edea3] hover:shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:scale-105 transition-all duration-300 cursor-pointer">
-                            <Image
-                                height={40}
-                                width={40}
-                                alt="User Profile"
-                                className="w-full h-full rounded-full object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZIooKpC7A-R7D4VpcKNiPs_v_o9vKpYEieUuP4rx1H8vKjhugpG8_vK7xfhnMrxXGcX_Kpvj5i5v7pWsH1PHZ0Za6_YHuVQI6tpAWeYYTFpig1bns6BejE-BdoqNgG3Tct5x-3GAcbHxZOCk-qxP6GIQASqrDWLcjeSP7Q3eHnFyzHtysRhouRgoJOhXAAD-p5ZaWhuQZShAksSFpyLcox90q0UPZ9jmfCOre5SM06CLzh1e8y7EIbqrFa3JfsufYnCJrUkcvNLI"
-                            />
+
                         </div>
-                    </div>
 
+
+                            : <div className='flex items-center justify-center gap-2'>
+
+                                <div className="w-10 h-10 rounded-full border border-[#4edea3]/30 p-0.5 hover:border-[#4edea3] hover:shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:scale-105 transition-all duration-300 cursor-pointer">
+                                    <Image
+                                        referrerPolicy='no-referrer'
+                                        height={40}
+                                        width={40}
+                                        alt={user?.name}
+                                        className="w-full h-full rounded-full object-cover"
+                                        src={user?.image || `${user?.name[1]}`}
+                                    />
+                                </div>
+
+                                <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                                    <Link href="/profile">
+                                        Profile
+                                    </Link>
+                                </button>
+
+                                {/* logout button */}
+                                <button onClick={handleLogout} className="border cursor-pointer font-['JetBrains_Mono',monospace] font-bold text-[14px]  p-1 rounded-xl bg-[#2ddda898] text-[#003824] hover:bg-[#df2121] transition-colors duration-200">
+                                    Log Out
+                                </button>
+                            </div>}
+                    </>
                     {/* Hamburger button — mobile only */}
                     <button
                         onClick={() => setIsMenuOpen((prev) => !prev)}

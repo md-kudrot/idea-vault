@@ -1,12 +1,48 @@
+'use client'
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { FaGoogle } from "react-icons/fa";
-const page = () => {
-    return (
-        <div>
-            <form className="space-y-5 max-w-[35%] mx-auto my-15 border border-[#4edea3]/20 rounded-xl px-8 py-8 bg-[#00170f]/50 backdrop-blur-lg">
+const SignUpPage = () => {
 
-<h1 className="text-3xl font-bold text-center text-[#4edea3]">Sign Up</h1>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries());
+        console.log(user);
+
+        const { data, error } = await authClient.signUp.email({
+            email: user.email,
+            password: user.password,
+            name: user.name,
+            image: user.image
+        })
+        // console.log(error, data);
+
+        if (data) {
+            redirect('/')
+        }
+
+        if (error) {
+            alert(error.message)
+        }
+
+    }
+
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        });
+    }
+
+
+    return (
+        <div className='max-w-[35%] mx-auto my-15 border border-[#4edea3]/20 rounded-xl px-8 py-8 bg-[#00170f]/50 backdrop-blur-lg'>
+            <form onSubmit={handleSubmit} className="space-y-5 ">
+
+                <h1 className="text-3xl font-bold text-center text-[#4edea3]">Sign Up</h1>
 
                 {/* Vault Identity / Email */}
                 <div className="flex flex-col gap-1.5">
@@ -17,6 +53,7 @@ const page = () => {
                             placeholder="John Doe"
                             required
                             type="text"
+                            name='name'
                         />
                     </div>
                 </div>
@@ -29,6 +66,7 @@ const page = () => {
                             placeholder="https://example.com/image.jpg"
                             required
                             type="text"
+                            name='image'
                         />
                     </div>
                 </div>
@@ -41,6 +79,7 @@ const page = () => {
                             placeholder="identity@domain.sec"
                             required
                             type="email"
+                            name='email'
                         />
                     </div>
                 </div>
@@ -57,6 +96,7 @@ const page = () => {
                             placeholder="••••••••••••"
                             required
                             type="password"
+                            name='password'
                         />
                     </div>
                 </div>
@@ -69,22 +109,23 @@ const page = () => {
                 >
                     Sign Up
                 </button>
-                <h1 className='text-center text-2xl'>or</h1>
-                <button
-                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-md uppercase tracking-wider h-12 rounded-xl shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:shadow-[0_0_25px_rgba(78,222,163,0.4)] active:scale-[0.98] transition-all cursor-pointer mt-2"
-                >
-                  <FaGoogle /> Continue with Google
-                </button>
-
-                <div className="">
-                    Already have an account?
-                    <Link href="/login" className="text-[#4edea3] ml-2 hover:underline">
-                        Log In
-                    </Link>
-                </div>
             </form>
+            <h1 className='text-center text-2xl'>or</h1>
+            <button
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-md uppercase tracking-wider h-12 rounded-xl shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:shadow-[0_0_25px_rgba(78,222,163,0.4)] active:scale-[0.98] transition-all cursor-pointer mt-2"
+                onClick={handleGoogleSignIn}
+            >
+                <FaGoogle /> Continue with Google
+            </button>
+
+            <div className="">
+                Already have an account?
+                <Link href="/login" className="text-[#4edea3] ml-2 hover:underline">
+                    Log In
+                </Link>
+            </div>
         </div>
     );
 };
 
-export default page;
+export default SignUpPage;
