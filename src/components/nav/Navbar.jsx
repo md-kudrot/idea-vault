@@ -1,10 +1,23 @@
+'use client';
+
+import { Button } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+
+const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/ideas', label: 'Ideas' },
+    { href: '/add-idea', label: 'Add Idea' },
+    { href: '/my-ideas', label: 'My Ideas' },
+    { href: '/my-interactions', label: 'My Interactions' },
+];
 
 const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     return (
-        <div className="sticky top-0 z-50  py-4  bg-[#00170f]/85 backdrop-blur-xl border-b border-[#4edea3]/10 transition-all duration-300">
+        <div className="sticky top-0 z-50 py-4 bg-[#00170f]/85 backdrop-blur-xl border-b border-[#4edea3]/10 transition-all duration-300">
             <header className="w-full md:max-w-[80%] mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
                 {/* Ambient glass glow */}
                 <div className="absolute inset-0 bg-[#003123]/5 pointer-events-none -z-10"></div>
@@ -21,43 +34,102 @@ const Navbar = () => {
                     </h1>
                 </Link>
 
-                {/* Navigation links */}
+                {/* Desktop Navigation links */}
                 <nav className="hidden md:flex items-center gap-4 lg:gap-8">
-
-                    <Link href="/" className="font-['JetBrains_Mono',monospace] text-md font-bold tracking-[0.05em] text-[#4edea3] transition-colors duration-300 py-1">
-                        Home
-                    </Link>
-                    <Link href="/ideas" className="font-['JetBrains_Mono',monospace] text-md font-bold tracking-[0.05em] text-[#4edea3] transition-colors duration-300 py-1">
-                        Ideas
-                    </Link>
-                    <Link href="/add-idea" className="font-['JetBrains_Mono',monospace] text-md font-bold tracking-[0.05em] text-[#4edea3] transition-colors duration-300 py-1">
-                        Add Idea
-                    </Link>
-                    <Link href="/my-ideas" className="font-['JetBrains_Mono',monospace] text-md font-bold tracking-[0.05em] text-[#4edea3] transition-colors duration-300 py-1">
-                        My Ideas
-                    </Link>
-                    <Link href="/my-interactions" className="font-['JetBrains_Mono',monospace] text-md font-bold tracking-[0.05em] text-[#4edea3] transition-colors duration-300 py-1">
-                        My Interactions
-                    </Link>
-
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+                        >
+                            {link.label}
+                            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+                        </Link>
+                    ))}
                 </nav>
 
-                {/* System Status & User Profile */}
-                <div className="flex items-center gap-5">
-                    {/* User avatar with neon green ring */}
-                    <div className="w-10 h-10 rounded-full border border-[#4edea3]/30 p-0.5 hover:border-[#4edea3] hover:shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:scale-105 transition-all duration-300 cursor-pointer">
-                        <Image
-                            height={40}
-                            width={40}
-                            alt="User Profile"
-                            className="w-full h-full rounded-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZIooKpC7A-R7D4VpcKNiPs_v_o9vKpYEieUuP4rx1H8vKjhugpG8_vK7xfhnMrxXGcX_Kpvj5i5v7pWsH1PHZ0Za6_YHuVQI6tpAWeYYTFpig1bns6BejE-BdoqNgG3Tct5x-3GAcbHxZOCk-qxP6GIQASqrDWLcjeSP7Q3eHnFyzHtysRhouRgoJOhXAAD-p5ZaWhuQZShAksSFpyLcox90q0UPZ9jmfCOre5SM06CLzh1e8y7EIbqrFa3JfsufYnCJrUkcvNLI"
-                        />
+                {/* Right side: Avatar + Hamburger */}
+                <div className="flex items-center gap-3">
+
+                    <div className='flex items-center justify-center gap-2'>
+                        {/*login button */}
+                        
+                            <Link
+                                href="/login"
+                                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+                            >
+                                Log In
+                            </Link>
+                        
+                  
+                        
+
+                        {/* signup button */}
+                        <Link
+                            href="/signup"
+                            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+                        >
+                            Sign Up
+                        </Link>
+
                     </div>
+                    {/* User avatar */}
+                    <div className='hidden'>
+
+                        <div className="w-10 h-10 rounded-full border border-[#4edea3]/30 p-0.5 hover:border-[#4edea3] hover:shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:scale-105 transition-all duration-300 cursor-pointer">
+                            <Image
+                                height={40}
+                                width={40}
+                                alt="User Profile"
+                                className="w-full h-full rounded-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZIooKpC7A-R7D4VpcKNiPs_v_o9vKpYEieUuP4rx1H8vKjhugpG8_vK7xfhnMrxXGcX_Kpvj5i5v7pWsH1PHZ0Za6_YHuVQI6tpAWeYYTFpig1bns6BejE-BdoqNgG3Tct5x-3GAcbHxZOCk-qxP6GIQASqrDWLcjeSP7Q3eHnFyzHtysRhouRgoJOhXAAD-p5ZaWhuQZShAksSFpyLcox90q0UPZ9jmfCOre5SM06CLzh1e8y7EIbqrFa3JfsufYnCJrUkcvNLI"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Hamburger button — mobile only */}
+                    <button
+                        onClick={() => setIsMenuOpen((prev) => !prev)}
+                        aria-label="Toggle menu"
+                        className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-lg border border-[#4edea3]/20 hover:border-[#4edea3]/50 hover:bg-[#4edea3]/5 transition-all duration-300"
+                    >
+                        <span
+                            className={`block w-5 h-[2px] bg-[#4edea3] rounded-full transition-all duration-300 origin-center ${isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
+                                }`}
+                        />
+                        <span
+                            className={`block w-5 h-[2px] bg-[#4edea3] rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0 scale-x-0' : ''
+                                }`}
+                        />
+                        <span
+                            className={`block w-5 h-[2px] bg-[#4edea3] rounded-full transition-all duration-300 origin-center ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''
+                                }`}
+                        />
+                    </button>
                 </div>
             </header>
-        </div>
 
+            {/* Mobile Dropdown Menu */}
+            <div
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+            >
+                <nav className="flex flex-col px-4 sm:px-6 pt-2 pb-4 gap-1 border-t border-[#4edea3]/10 mt-3">
+                    {navLinks.map((link, index) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            style={{ animationDelay: `${index * 50}ms` }}
+                            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] hover:bg-[#4edea3]/5 transition-all duration-200 px-3 py-2.5 rounded-lg flex items-center gap-2 group"
+                        >
+                            <span className="w-1 h-1 rounded-full bg-[#4edea3]/40 group-hover:bg-[#4edea3] transition-colors duration-200" />
+                            {link.label}
+                        </Link>
+                    ))}
+                </nav>
+            </div>
+        </div>
     );
 };
 
