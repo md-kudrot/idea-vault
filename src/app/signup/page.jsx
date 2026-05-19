@@ -39,7 +39,7 @@ const SignUpPage = () => {
 
 
     return (
-        <div className='max-w-[35%] mx-auto my-15 border border-[#4edea3]/20 rounded-xl px-8 py-8 bg-[#00170f]/50 backdrop-blur-lg'>
+        <div className='w-full max-w-[92%] sm:max-w-[80%] md:max-w-[60%] lg:max-w-[45%] xl:max-w-[35%] mx-auto my-8 sm:my-12 md:my-16 border border-[#4edea3]/20 rounded-xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 bg-[#00170f]/50 backdrop-blur-lg'>
             <form onSubmit={handleSubmit} className="space-y-5 ">
 
                 <h1 className="text-3xl font-bold text-center text-[#4edea3]">Sign Up</h1>

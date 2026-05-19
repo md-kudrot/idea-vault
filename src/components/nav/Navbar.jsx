@@ -94,12 +94,12 @@ const Navbar = () => {
 
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2.5 group">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#4edea3] to-[#12a970] flex items-center justify-center text-[#003824] shadow-[0_0_15px_rgba(78,222,163,0.3)] group-hover:scale-105 transition-all duration-300">
+                    <div className="md:w-9 md:h-9 p-1 rounded-xl bg-gradient-to-br from-[#4edea3] to-[#12a970] flex items-center justify-center text-[#003824] shadow-[0_0_15px_rgba(78,222,163,0.3)] group-hover:scale-105 transition-all duration-300">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                         </svg>
                     </div>
-                    <h1 className="font-['Geist',sans-serif] text-[24px] tracking-[-0.04em] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">
+                    <h1 className="font-['Geist',sans-serif] text-xl md:text-[24px] tracking-[-0.04em] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">
                         Idea<span className="text-[#4edea3]">Vault</span>
                     </h1>
                 </Link>
@@ -112,11 +112,11 @@ const Navbar = () => {
                 {/* Right side: Avatar + Hamburger */}
                 <div className="flex items-center gap-3">
                     <>
-                        {!user ? <div className='flex items-center justify-center gap-2'>
+                        {!user ? <div className='flex items-center justify-center gap-0.5 md:gap-2'>
                             {/*login button */}
-                            <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                            <button className="md:w-20 px-2 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-sm md:text-[14px]  tracking-wider md:h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
                                 <Link href="/login">
-                                    Log In
+                                    LogIn
                                 </Link>
                             </button>
 
@@ -125,7 +125,7 @@ const Navbar = () => {
 
 
                             {/* signup button */}
-                            <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
+                            <button className="md:w-20 px-2 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider  md:h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
                                 <Link href="/signup">
                                     Sign Up
                                 </Link>

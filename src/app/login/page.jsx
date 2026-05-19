@@ -7,27 +7,27 @@ import { FaGoogle } from "react-icons/fa";
 const page = () => {
 
     const handleSubmit = async (e) => {
-            e.preventDefault();
-    
-            const formData = new FormData(e.currentTarget);
-            const user = Object.fromEntries(formData.entries());
-            console.log(user);
-    
-            const { data, error } = await authClient.signIn.email({
-                email: user.email,
-                password: user.password,
-            })
-            console.log({error, data});
-    
-            if (data) {
-                redirect('/')
-            }
-    
-            if (error) {
-                alert(error.message)
-            }
-    
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries());
+        console.log(user);
+
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+        })
+        console.log({ error, data });
+
+        if (data) {
+            redirect('/')
         }
+
+        if (error) {
+            alert(error.message)
+        }
+
+    }
 
     const handleGoogleSignIn = async () => {
         await authClient.signIn.social({
@@ -36,7 +36,7 @@ const page = () => {
     }
 
     return (
-        <div className='max-w-[35%] mx-auto my-25 border border-[#4edea3]/20 rounded-xl px-8 py-8 bg-[#00170f]/50 backdrop-blur-lg'>
+        <div className='w-full max-w-[92%] sm:max-w-[80%] md:max-w-[60%] lg:max-w-[45%] xl:max-w-[35%] mx-auto my-8 sm:my-12 md:my-16 border border-[#4edea3]/20 rounded-xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 bg-[#00170f]/50 backdrop-blur-lg'>
             <form onSubmit={handleSubmit} className="space-y-5 ">
 
                 <h1 className="text-3xl font-bold text-center text-[#4edea3]">Log In</h1>

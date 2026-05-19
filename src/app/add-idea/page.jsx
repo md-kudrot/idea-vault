@@ -1,6 +1,31 @@
+'use client'
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 const page = () => {
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const newIdea = Object.fromEntries(formData.entries());
+
+        console.log(newIdea);
+        const res = await fetch('http://localhost:5000/new-idea', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newIdea)
+        })
+
+        const data = await res.json()
+        console.log(data);
+
+        alert('Idea submitted successfully!');
+        redirect('/');
+        
+    };
+
     return (
         <div>
             <main className="flex-1 overflow-y-auto pb-32">
@@ -9,11 +34,11 @@ const page = () => {
                     <p className="text-[#bbcabf] text-center text-base font-normal leading-relaxed mt-2 ">Share your startup concept with the world and get valuable feedback from top architects.</p>
                 </div>
 
-                <form className="px-6 py-6 space-y-6 max-w-3xl mx-auto">
+                <form className="px-6 py-6 space-y-6 max-w-3xl mx-auto" onSubmit={handleSubmit}>
                     {/* Idea Title */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Idea Title*</label>
-                        <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Enter your startup name" required type="text" />
+                        <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Enter your startup name" required type="text" name='startupName' />
                     </div>
 
                     {/* Category */}
@@ -33,29 +58,26 @@ const page = () => {
                     {/* Short Description */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Short Description*</label>
-                        <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="One sentence pitch" required type="text" />
+                        <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="One sentence pitch" required type="text" name='shortDescription' />
                     </div>
 
                     {/* Detailed Description */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Detailed Description*</label>
-                        <textarea className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Tell us more about how it works..." required rows={4}></textarea>
+                        <input className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Tell us more about how it works..." required rows={4} name='detailedDescription'></input>
                     </div>
 
                     {/* Tags */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Tags</label>
-                        <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="e.g. mobile, b2b, automation" type="text" />
+                        <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="e.g. mobile, b2b, automation" type="text" name='tags' />
                     </div>
 
                     {/* Image URL */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Cover Image</label>
                         <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <span className="material-symbols-outlined text-[#bbcabf]/60">image</span>
-                            </div>
-                            <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 pl-12 pr-4 text-base transition-all" placeholder="https://image-url.com/hero.jpg" type="url" />
+                            <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 pl-4 pr-4 text-base transition-all" placeholder="https://image-url.com/hero.jpg" type="url" name='imageUrl' />
                         </div>
                     </div>
 
@@ -63,25 +85,25 @@ const page = () => {
                         {/* Estimated Budget */}
                         <div className="flex flex-col gap-2">
                             <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Estimated Budget</label>
-                            <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="e.g. $10k - $50k" type="text" />
+                            <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="e.g. $10k - $50k" type="text" name='estimatedBudget' />
                         </div>
                         {/* Target Audience */}
                         <div className="flex flex-col gap-2">
                             <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Target Audience</label>
-                            <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Who is this for?" type="text" />
+                            <input className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-14 placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Who is this for?" type="text" name='targetAudience' />
                         </div>
                     </div>
 
                     {/* Problem Statement */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Problem Statement</label>
-                        <textarea className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="What pain point are you solving?" rows={3}></textarea>
+                        <input className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="What pain point are you solving?" rows={3} name='problemStatement'></input>
                     </div>
 
                     {/* Proposed Solution */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Proposed Solution</label>
-                        <textarea className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="How does your idea solve the problem?" rows={3}></textarea>
+                        <input className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="How does your idea solve the problem?" rows={3} name='proposedSolution'></input>
                     </div>
 
                     {/* Primary Action */}

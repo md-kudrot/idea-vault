@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-
+import { FaAngleLeft, FaChevronRight } from "react-icons/fa6";
 
 
 
@@ -34,6 +34,14 @@ const Hero = () => {
     });
 
     // console.log(currentSlide)
+
+    const handleNextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }
+
+    const handlePrevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+    }
 
 
 
@@ -93,9 +101,12 @@ const Hero = () => {
 
                 {/* Sibling 4: Indicators */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2.5 items-center">
-                    <span className="w-8 h-1 bg-[#4edea3] rounded-full shadow-[0_0_8px_#4edea3] transition-all duration-300"></span>
-                    <span className="w-2 h-1 bg-[#3c4a42]/80 rounded-full opacity-60 hover:opacity-100 cursor-pointer transition-all duration-300"></span>
-                    <span className="w-2 h-1 bg-[#3c4a42]/80 rounded-full opacity-60 hover:opacity-100 cursor-pointer transition-all duration-300"></span>
+                    <button onClick={handlePrevSlide} className="w-8 h-8 bg-[#4edea3]/20 hover:bg-[#4edea3]/40 text-[#4edea3] rounded-full flex items-center justify-center transition-all duration-300">
+                        <FaAngleLeft />
+                    </button>
+                    <button onClick={handleNextSlide} className="w-8 h-8 bg-[#4edea3]/20 hover:bg-[#4edea3]/40 text-[#4edea3] rounded-full flex items-center justify-center transition-all duration-300">
+                        <FaChevronRight />
+                    </button>
                 </div>
 
             </div>
