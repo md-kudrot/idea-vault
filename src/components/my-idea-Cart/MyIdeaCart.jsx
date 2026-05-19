@@ -15,12 +15,10 @@ const MyIdeaCart = ({ user, idea }) => {
                 <div className="absolute -top-12 -right-12 w-24 h-24 bg-[#4edea3]/3 blur-[30px] rounded-full group-hover:scale-150 transition-transform duration-500"></div>
 
                 <div className="space-y-10 relative z-10">
-                    <div className="flex justify-between items-center">
-                        <span className="bg-[#4edea3]/10 border border-[#4edea3]/25 px-2.5 py-0.5 rounded-full font-['JetBrains_Mono',monospace] text-md tracking-[0.05em] text-[#4edea3] font-bold uppercase">
-                            Agri-Tech
-                        </span>
+                    <div className="flex justify-end items-center">
+                        
                         {/* edit and delete buttons */}
-                        <div className="flex gap-2">
+                        <div className="flex  gap-2">
                             <button className="bg-[#4edea3]/10 border border-[#4edea3]/25 px-2.5 py-0.5 rounded-full font-['JetBrains_Mono',monospace] text-md text-[#4edea3] hover:bg-[#4edea3]/20 transition-colors duration-300">
                                 Edit
                             </button>

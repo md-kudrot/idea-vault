@@ -8,7 +8,7 @@ const TrendingIdea = async () => {
     const res = await fetch('http://localhost:5000/new-idea');
     const data = await res.json();
 
-    const trendingIdeas = data.slice(0, 3);
+    const trendingIdeas = data.slice(0, 6);
     console.log(trendingIdeas);
 
     return (

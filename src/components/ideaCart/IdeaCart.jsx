@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const IdeaCart = ({ idea }) => {
-    const { startupName, imageUrl, tags, shortDescription, detailedDescription, _id } = idea;
+    const { startupName, imageUrl, tags, shortDescription, detailedDescription, _id, username, userEmail, createdAt, userImage } = idea;
     return (
         <>
             <Link
@@ -25,7 +25,7 @@ const IdeaCart = ({ idea }) => {
                             {tags}
                         </span>
                         <span className="font-['JetBrains_Mono',monospace] text-md text-[#86948a]">
-                            May 18
+                          {createdAt ? new Date(createdAt).toLocaleDateString() : "Unknown date"}
                         </span>
                     </div>
 
@@ -42,12 +42,12 @@ const IdeaCart = ({ idea }) => {
                     <Image
                         height={40}
                         width={40}
-                        src="/placeholder.svg"
+                        src={userImage || "/placeholder.svg"}
                         alt="Profile"
                         className="w-10 h-10 rounded-full border border-[#4edea3]/20"
                     />
                     <span className="font-['JetBrains_Mono',monospace] text-lg text-[#86948a]">
-                        John Doe
+                        {username || "Anonymous"}
                     </span>
                 </div>
 

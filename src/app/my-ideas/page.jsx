@@ -9,7 +9,7 @@ const res = await fetch('http://localhost:5000/new-idea');
 const allIdeas = await res.json();
 
 const page = () => {
-    // console.log(allIdeas, 'all ideas');
+    console.log(allIdeas, 'all ideas');
      const {
             data: session,
         } = authClient.useSession()
@@ -20,7 +20,7 @@ const page = () => {
         const userEmail = user?.email;
         // console.log(userEmail, 'my ideas');
 
-        const myIdeas = allIdeas.filter(idea => idea.email === userEmail);
+    const myIdeas = allIdeas.filter(idea => idea.userEmail === userEmail);
         // console.log(myIdeas, 'my ideas');
         
 

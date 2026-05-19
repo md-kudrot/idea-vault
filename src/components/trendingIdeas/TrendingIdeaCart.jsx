@@ -8,9 +8,7 @@ const TrendingIdeaCart = ({ idea }) => {
 
     return (
         <div>
-            <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/30 shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-500 rounded-3xl p-8 md:p-10 flex flex-col justify-between relative group overflow-hidden h-[500px]">
-                {/* Interactive overlay card highlight */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#4edea3]/0 via-[#4edea3]/0 to-[#4edea3]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+            <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/30 transition-all duration-500 rounded-3xl p-8 md:p-10 flex flex-col justify-between relative group overflow-hidden h-[500px]">
 
                 <div className="absolute top-0 right-0 p-8 z-20">
                     {/* Premium Tech SVG Icon */}
@@ -33,9 +31,18 @@ const TrendingIdeaCart = ({ idea }) => {
 
                 {/* Top Content Block */}
                 <div className="relative z-10 max-w-lg ">
-                    <div className="inline-flex items-center  gap-2 bg-[#4edea3]/10 backdrop-blur-md border border-[#4edea3]/20 px-3 py-1.5 rounded-full mb-6">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3]"></span>
-                        <span className="font-['JetBrains_Mono',monospace] font-bold text-[9px] tracking-[0.1em] text-[#4edea3]">{tags}</span>
+                    <div className="inline-flex  items-center  gap-2 bg-[#4edea3]/10 backdrop-blur-md border border-[#4edea3]/20 px-3 py-1.5 rounded-full mb-6">
+                    
+                            {
+                                tags.split(' ').map((tag, index) => (
+                                    <span key={index} className="font-['JetBrains_Mono',monospace] font-bold text-sm tracking-[0.1em] text-[#4edea3]">
+                                        #{tag.trim()}
+                                    </span>
+                                ))
+                            }
+                    
+                        {/* <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3]"></span>
+                        <span className="font-['JetBrains_Mono',monospace] font-bold text-sm tracking-[0.1em] text-[#4edea3]">{tags}</span> */}
                     </div>
                     <h4 className="font-['Geist',sans-serif] text-[36px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">
                         {startupName}
