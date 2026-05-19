@@ -7,13 +7,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 
-const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/ideas', label: 'Ideas' },
-    { href: '/add-idea', label: 'Add Idea' },
-    { href: '/my-ideas', label: 'My Ideas' },
-    { href: '/my-interactions', label: 'My Interactions' },
-];
+
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,6 +25,66 @@ const Navbar = () => {
 
         redirect('/login');
     }
+
+    // const navLinks = [
+    //     { href: '/', label: 'Home' },
+    //     { href: '/ideas', label: 'Ideas' },
+    //     { href: '/add-idea', label: 'Add Idea' },
+    //     { href: '/my-ideas', label: 'My Ideas' },
+    //     { href: '/my-interactions', label: 'My Interactions' },
+    // ];
+    const navLinks = <>
+    
+        <Link
+            href={"/"}
+            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+        >
+            Home
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+        </Link>
+
+        <Link
+            href={"/ideas"}
+            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+        >
+            Ideas
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+        </Link>
+
+     
+        { user && <>
+            <Link
+                href={"/add-idea"}
+                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+            >
+                Add Idea
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link
+                href={"/my-ideas"}
+                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+            >
+                My Ideas
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link
+                href={"/my-interactions"}
+                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+            >
+                My Interactions
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link
+                href={"/profile"}
+                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
+            >
+                My Profile
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
+            </Link>
+        </>}
+       
+    
+    </>
 
     return (
         <div className="sticky top-0 z-50 py-4 bg-[#00170f]/85 backdrop-blur-xl border-b border-[#4edea3]/10 transition-all duration-300">
@@ -52,16 +106,7 @@ const Navbar = () => {
 
                 {/* Desktop Navigation links */}
                 <nav className="hidden md:flex items-center gap-4 lg:gap-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
-                        >
-                            {link.label}
-                            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
-                        </Link>
-                    ))}
+                    {navLinks}
                 </nav>
 
                 {/* Right side: Avatar + Hamburger */}
@@ -92,7 +137,7 @@ const Navbar = () => {
 
                             : <div className='flex items-center justify-center gap-2'>
 
-                                <div className="w-10 h-10 rounded-full border border-[#4edea3]/30 p-0.5 hover:border-[#4edea3] hover:shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:scale-105 transition-all duration-300 cursor-pointer">
+                                <Link href={'/profile'} className="w-10 h-10 rounded-full border border-[#4edea3]/30 p-0.5 hover:border-[#4edea3] hover:shadow-[0_0_15px_rgba(78,222,163,0.25)] hover:scale-105 transition-all duration-300 cursor-pointer">
                                     <Image
                                         referrerPolicy='no-referrer'
                                         height={40}
@@ -101,18 +146,20 @@ const Navbar = () => {
                                         className="w-full h-full rounded-full object-cover"
                                         src={user?.image || `${user?.name[1]}`}
                                     />
-                                </div>
+                                </Link>
 
-                                <button className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
-                                    <Link href="/profile">
-                                        Profile
-                                    </Link>
+                                <button onClick={handleLogout} className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)]  active:scale-[0.98] transition-all
+                                 hover:bg-[#df2121] cursor-pointer
+                                ">
+                                    
+                                    Log Out
+                                    
                                 </button>
 
                                 {/* logout button */}
-                                <button onClick={handleLogout} className="border cursor-pointer font-['JetBrains_Mono',monospace] font-bold text-[14px]  p-1 rounded-xl bg-[#2ddda898] text-[#003824] hover:bg-[#df2121] transition-colors duration-200">
+                                {/* <button onClick={handleLogout} className="border cursor-pointer font-['JetBrains_Mono',monospace] font-bold text-[14px]  p-1 rounded-xl bg-[#2ddda898] text-[#003824] hover:bg-[#df2121] transition-colors duration-200">
                                     Log Out
-                                </button>
+                                </button> */}
                             </div>}
                     </>
                     {/* Hamburger button — mobile only */}
@@ -143,18 +190,9 @@ const Navbar = () => {
                     }`}
             >
                 <nav className="flex flex-col px-4 sm:px-6 pt-2 pb-4 gap-1 border-t border-[#4edea3]/10 mt-3">
-                    {navLinks.map((link, index) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setIsMenuOpen(false)}
-                            style={{ animationDelay: `${index * 50}ms` }}
-                            className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] hover:bg-[#4edea3]/5 transition-all duration-200 px-3 py-2.5 rounded-lg flex items-center gap-2 group"
-                        >
-                            <span className="w-1 h-1 rounded-full bg-[#4edea3]/40 group-hover:bg-[#4edea3] transition-colors duration-200" />
-                            {link.label}
-                        </Link>
-                    ))}
+                  {
+                    navLinks
+                  }
                 </nav>
             </div>
         </div>
