@@ -2,6 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/nav/Navbar";
 import Footer from "@/components/footer/Footer";
+// fonts: font-['JetBrains_Mono',monospace]
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

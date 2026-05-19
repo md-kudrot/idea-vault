@@ -4,7 +4,7 @@ import React from 'react';
 
 const TrendingIdeaCart = ({ idea }) => {
 
-    const { startupName, imageUrl, tags, shortDescription, detailedDescription } = idea;
+    const { startupName, imageUrl, tags, shortDescription, detailedDescription, _id } = idea;
 
     return (
         <div>
@@ -40,8 +40,8 @@ const TrendingIdeaCart = ({ idea }) => {
                     <h4 className="font-['Geist',sans-serif] text-[36px] md:text-[44px] leading-[1.05] tracking-[-0.03em] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">
                         {startupName}
                     </h4>
-                    {/* {detailedDescription } */}
-                    <h1>{detailedDescription}</h1>
+                    {/* {detailedDescription show only 3 lines} */}
+                    <h1 className='line-clamp-4'>{detailedDescription}</h1>
                 </div>
 
                 {/* Bottom Content Block */}
@@ -50,7 +50,7 @@ const TrendingIdeaCart = ({ idea }) => {
                         {shortDescription}
                     </p>
                     <button className=" px-2 w-[50%] bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold   tracking-wider  rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
-                        <Link href="/ideas/1">
+                        <Link href={`/ideas/${_id}`}>
                             View Idea
                         </Link>
                     </button>

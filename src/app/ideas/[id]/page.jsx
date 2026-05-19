@@ -1,7 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
 
-const detailsPage = () => {
+const detailsPage = async ({ params }) => {
+    const { id } = await params;
+    // console.log(id);
+
+    const res = await fetch(`http://localhost:5000/new-idea/${id}`);
+    const idea = await res.json();
+    console.log(idea);
+    const { startupName, imageUrl, tags, shortDescription, detailedDescription, proposedSolution, _id, targetAudience, estimatedBudget, problemStatement } = idea;
+
     return (
         <div>
 
@@ -12,8 +20,8 @@ const detailsPage = () => {
                     <Image
                         height={400}
                         width={600}
-                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200"
-                        alt="Futuristic cyber technology network layout"
+                        src={imageUrl}
+                        alt={startupName}   
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00170f] via-transparent to-transparent"></div>
@@ -24,12 +32,12 @@ const detailsPage = () => {
 
                     {/* 2. Idea Title */}
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.03em] text-[#b0f0d6]">
-                        AI-Driven Vertical Farming Neural-Sync
+                        {startupName}
                     </h1>
 
                     {/* 3. Subtitle */}
                     <p className="text-lg sm:text-xl md:text-2xl text-[#bbcabf] font-medium leading-relaxed italic border-l-4 border-[#4edea3]/50 pl-5 py-1">
-                        "Autonomous nutrient delivery systems mapped to real-time neural growth patterns."
+                        {shortDescription}
                     </p>
 
                     {/* 4. Idea Owner's Avatar, Name, and Creation Date */}
@@ -57,15 +65,15 @@ const detailsPage = () => {
 
                     {/* 5. Tags */}
                     <div className="flex flex-wrap gap-2.5 pt-4">
-                        <span className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm text-[#4edea3] border border-[#4edea3]/30 bg-[#4edea3]/5 px-3.5 py-1.5 rounded-full font-semibold">
-                            #biotech
-                        </span>
-                        <span className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm text-[#4edea3] border border-[#4edea3]/30 bg-[#4edea3]/5 px-3.5 py-1.5 rounded-full font-semibold">
-                            #ai
-                        </span>
-                        <span className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm text-[#4edea3] border border-[#4edea3]/30 bg-[#4edea3]/5 px-3.5 py-1.5 rounded-full font-semibold">
-                            #sustainability
-                        </span>
+                        {
+                            tags.split(" ").map((tag, index) => (
+                                <span key={index} className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm text-[#4edea3] border border-[#4edea3]/30 bg-[#4edea3]/5 px-3.5 py-1.5 rounded-full font-semibold">
+                                    #{tag.trim()}
+                                </span>
+                            ))
+                        }
+                     
+                       
                     </div>
                 </div>
 
@@ -75,14 +83,14 @@ const detailsPage = () => {
                     <div className="bg-[#002117]/30 border border-[#3c4a42]/30 rounded-2xl p-6 space-y-2 shadow-lg">
                         <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em]">Target Audience</span>
                         <p className="text-[#b0f0d6] text-base sm:text-lg font-bold leading-snug">
-                            Vertical farmers, commercial greenhouse operators & bio-engineers
+                            {targetAudience}
                         </p>
                     </div>
                     {/* Budget */}
                     <div className="bg-[#002117]/30 border border-[#3c4a42]/30 rounded-2xl p-6 space-y-2 shadow-lg">
                         <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em]">Estimated Budget Scope</span>
                         <p className="text-[#b0f0d6] text-base sm:text-lg font-bold leading-snug">
-                            $150,000 - $500,000 USD
+                            {estimatedBudget}
                         </p>
                     </div>
                 </div>
@@ -97,7 +105,7 @@ const detailsPage = () => {
                             Problem Statement
                         </h3>
                         <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">
-                            Traditional hydroponics systems suffer from high nutrient supply latency and generic distribution pipelines. This limits plant growth density, leads to substantial chemical waste, and fails to accommodate complex micro-growth behaviors of different biological strains.
+                            {problemStatement}
                         </p>
                     </div>
 
@@ -108,12 +116,12 @@ const detailsPage = () => {
                             Problem Solution
                         </h3>
                         <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">
-                            By designing bio-synthetic feedback loops that bridge real-time sensors with machine learning algorithms, we create an automated nutrient control system. This system acts as a biological pacemaker, adjusting and matching transpiration dynamics directly at the plant root boundary layer.
+                            {proposedSolution}
                         </p>
                     </div>
 
                     {/* 10. Proposed Solution */}
-                    <div className="space-y-2.5">
+                    {/* <div className="space-y-2.5">
                         <h3 className="font-['Geist',sans-serif] text-xl sm:text-2xl font-bold flex items-center gap-2 text-[#4edea3] border-b border-[#3c4a42]/20 pb-2">
                             <span className="material-symbols-outlined">architecture</span>
                             Proposed Solution
@@ -121,20 +129,20 @@ const detailsPage = () => {
                         <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">
                             The proposed neural-synchronization hub deploys flexible bio-sensor mesh arrays wrapped directly around crops. These arrays stream continuous electrochemical data into our AI core, dynamically tuning automated valves to deliver micro-doses of precise mineral formulations with absolute zero waste.
                         </p>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* 11. Comments Section (Input Field, Post Button, & List) */}
                 <div className="space-y-8 bg-[#002117]/30 border border-[#3c4a42]/30 rounded-3xl p-8 sm:p-10 shadow-xl">
                     <h3 className="font-['Geist',sans-serif] text-xl sm:text-2xl font-bold flex items-center gap-2 border-b border-[#3c4a42]/20 pb-3 text-[#b0f0d6]">
-                       Comments
+                        Comments
                     </h3>
 
                     {/* Comment Input Field & Post Comment Button */}
                     <form className="space-y-4">
-                      
+
                         <div className="space-y-4">
-                           
+
                             <input
                                 placeholder="Write your comment here..."
                                 className="form-textarea w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/25 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] p-4 text-base placeholder:text-[#bbcabf]/30 transition-all"
