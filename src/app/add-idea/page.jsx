@@ -105,6 +105,10 @@ const page = () => {
                         <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Proposed Solution</label>
                         <input className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="How does your idea solve the problem?" rows={3} name='proposedSolution'></input>
                     </div>
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-sm font-bold uppercase tracking-[0.1em]">Enter Your Email</label>
+                        <input className="form-textarea flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/20 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] placeholder:text-[#bbcabf]/50 p-4 text-base transition-all" placeholder="Enter your email" rows={3} name='email'></input>
+                    </div>
 
                     {/* Primary Action */}
                     <div className="pt-6 pb-8">
