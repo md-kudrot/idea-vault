@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import EditeModal from '../editModal/EditeModal';
+import DeleteDialog from '../deleteDialog/DeleteDialog';
 
 const MyIdeaCart = ({ user, idea }) => {
     console.log(idea, 'idea in cart');
@@ -21,9 +22,7 @@ const MyIdeaCart = ({ user, idea }) => {
                         {/* edit and delete buttons */}
                         <div className="flex  gap-2">
                             <EditeModal idea = {idea}></EditeModal>
-                            <button className="bg-[#ff6b6b]/10 border border-[#ff6b6b]/25 px-2.5 py-0.5 rounded-full font-['JetBrains_Mono',monospace] text-md text-[#ff6b6b] hover:bg-[#ff6b6b]/20 transition-colors duration-300">
-                                Delete
-                            </button>
+                            <DeleteDialog idea={idea}></DeleteDialog>
                         </div>
                     </div>
 
