@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+
+:root {
+    /* User Accent & Success definitions directly customizable here */
+    --accent: oklch(0.7 0.25 260);
+    /* Vibrant Royal Sapphire Blue */
+    --success: oklch(0.65 0.15 155);
+    /* Cybernetic Emerald Green */
+}

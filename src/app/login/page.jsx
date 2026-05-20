@@ -3,6 +3,7 @@ import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { use } from 'react';
+import toast from 'react-hot-toast';
 import { FaGoogle } from "react-icons/fa";
 const page = () => {
 
@@ -20,11 +21,13 @@ const page = () => {
         // console.log({ error, data });
 
         if (data) {
+            toast.success('Logged in successfully!');
             redirect('/')
         }
 
+
         if (error) {
-            alert(error.message)
+            toast.error(error.message)
         }
 
     }

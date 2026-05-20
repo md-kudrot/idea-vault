@@ -62,10 +62,10 @@ const IdeaCart = ({ idea }) => {
                         }
                        
                     </div>
-                    <Link href={`/ideas/${_id}`} className="flex items-center gap-1 text-[#4edea3]">
+                    <button className="flex items-center gap-1 text-[#4edea3]">
                         <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>View details</span>
 
-                    </Link>
+                    </button>
                 </div>
             </Link>
 

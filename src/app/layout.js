@@ -1,9 +1,11 @@
+import { Providers } from "./providers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/nav/Navbar";
 import Footer from "@/components/footer/Footer";
+import { Toaster } from "react-hot-toast";
 // fonts: font-['JetBrains_Mono',monospace]
-
+// import "../themes/ocean.css"; 
 
 
 const geistSans = Geist({
@@ -34,7 +36,48 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         <Footer></Footer>
+        <Toaster position="top-center" />
       </body>
     </html>
   );
 }
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html
+//       lang="en"
+//       suppressHydrationWarning
+//       // data-theme="dark"
+//       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+//     >
+//       <body className="bg-background text-foreground">
+        
+//           <Navbar></Navbar>
+//           <Providers>
+//             {children}
+//           </Providers>
+      
+//         <Footer></Footer>
+//         <Toaster position="top-right" /> 
+//       </body>
+//     </html>
+//   );
+// }
+
+// export default function RootLayout({ children }) {
+  
+//   return (
+//     <html lang="en" suppressHydrationWarning>
+//       <body className="min-h-full flex flex-col bg-[#00170f]">
+//         <Navbar />
+//         <div className="w-full md:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
+//           <Providers >
+//             {children}
+//           </Providers>
+//         </div>
+//         <Toaster position="top-center" />
+//       </body>
+//       <Footer />
+//     </html>
+//   );
+// }

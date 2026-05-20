@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import CommentsEditMOdal from './commentsEiditModal/CommentsEditMOdal';
 import CommentsDeleteModal from './commentsDeleteModal/CommentsDeleteModal';
+import toast from 'react-hot-toast';
 
 const res = await fetch('http://localhost:5000/comments');
 const allComments = await res.json();
@@ -43,7 +44,7 @@ const Comments = ({ id, startupName, idea }) => {
         const data = await res.json()
         console.log(data);
 
-        alert('Comment submitted successfully!');
+        toast.success('Comment submitted successfully!');
         window.location.reload();
 
 

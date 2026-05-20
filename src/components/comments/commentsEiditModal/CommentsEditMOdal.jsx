@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react';
+import toast from 'react-hot-toast';
 
 
 const CommentsEditMOdal = ({ idea, comment }) => {
@@ -25,7 +26,7 @@ const CommentsEditMOdal = ({ idea, comment }) => {
         const data = await res.json()
         console.log(data);
 
-        alert('Comment updated successfully!');
+        toast.success('Comment updated successfully!');
         window.location.reload();
 
     };

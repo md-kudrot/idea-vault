@@ -3,6 +3,7 @@ import React from 'react';
 // import { Envelope } from "@gravity-ui/icons";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { authClient } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 
 const EditeModal = ({ idea }) => {
     const {
@@ -40,7 +41,7 @@ const EditeModal = ({ idea }) => {
         const data = await res.json()
         console.log(data);
 
-        alert('Idea updated successfully!');
+        toast.success('Idea updated successfully!');
         window.location.reload();
 
     };

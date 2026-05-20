@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Footer = () => {
@@ -33,10 +34,11 @@ const Footer = () => {
 
                         </span>
                         <div className="flex flex-col gap-2.5">
-                            <a className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="#">Manifesto</a>
-                            <a className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="#">Core Vaults</a>
-                            <a className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="#">Step Pipeline</a>
-                            <a className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="#">Top Architects</a>
+                            <Link className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="/ideas">Ideas</Link>
+                            <Link className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="/add-idea">Add Idea</Link>
+                            <Link className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="/my-ideas">My Ideas</Link>
+                            <Link className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="/my-interactions">My Interactions</Link>
+                            <Link className="font-['JetBrains_Mono',monospace]  text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 w-fit" href="/profile">My Profile</Link>
                         </div>
                     </div>
 
@@ -58,9 +60,10 @@ const Footer = () => {
 
                         </span>
                         <div className="space-y-2 font-['JetBrains_Mono',monospace]  text-[#bbcabf]/75">
-                            <div>NODE: <span className="text-[#4edea3]">US_EAST_01</span></div>
-                            <div>SHIELD_HASH: <span className="text-[#b0f0d6]">0x4A7D9C_SEC</span></div>
-                            <div>VERSION: <span className="text-[#b0f0d6]">v2.0.4-PROD</span></div>
+                        {/* social links and contact info */}
+                            <p>Email: <Link href="mailto:info@ideavault.com" className="hover:text-[#4edea3] transition-colors duration-300">info@ideavault.com</Link></p>
+                            <p>Twitter: <Link href="https://twitter.com/ideavault" className="hover:text-[#4edea3] transition-colors duration-300" target="_blank" rel="noopener noreferrer">@ideavault</Link></p>
+                            <p>LinkedIn: <Link href="https://linkedin.com/company/ideavault" className="hover:text-[#4edea3] transition-colors duration-300" target="_blank" rel="noopener noreferrer">linkedin.com/company/ideavault</Link></p>
                         </div>
                     </div>
 

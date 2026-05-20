@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
+import { ThemeSwitch } from '../ThemeToggle/ThemeToggle';
 
 
 
@@ -34,7 +35,7 @@ const Navbar = () => {
     //     { href: '/my-interactions', label: 'My Interactions' },
     // ];
     const navLinks = <>
-    
+
         <Link
             href={"/"}
             className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
@@ -51,39 +52,36 @@ const Navbar = () => {
             <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
         </Link>
 
-     
-        { user && <>
+
+        {user && <>
             <Link
                 href={"/add-idea"}
                 className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
             >
-                Add Idea
+                Add-Idea
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
             </Link>
             <Link
                 href={"/my-ideas"}
                 className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
             >
-                My Ideas
+                My-Ideas
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
             </Link>
             <Link
                 href={"/my-interactions"}
                 className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
             >
-                My Interactions
+                My-Interactions
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
             </Link>
-            <Link
-                href={"/profile"}
-                className="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-[0.05em] text-[#4edea3] hover:text-[#b0f0d6] transition-colors duration-300 py-1 relative group"
-            >
-                My Profile
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
-            </Link>
+            
+            <div className='flex justify-end md:hidden'>
+                <ThemeSwitch />
+            </div>
         </>}
-       
-    
+
+
     </>
 
     return (
@@ -105,13 +103,16 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Navigation links */}
-                <nav className="hidden md:flex items-center gap-4 lg:gap-8">
+                <nav className="hidden md:flex items-center gap-2 lg:gap-4">
                     {navLinks}
                 </nav>
 
                 {/* Right side: Avatar + Hamburger */}
                 <div className="flex items-center gap-3">
                     <>
+                        <div className='hidden md:flex'>
+                            <ThemeSwitch />
+                        </div>
                         {!user ? <div className='flex items-center justify-center gap-0.5 md:gap-2'>
                             {/*login button */}
                             <button className="md:w-20 px-2 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-sm md:text-[14px]  tracking-wider md:h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all">
@@ -151,9 +152,9 @@ const Navbar = () => {
                                 <button onClick={handleLogout} className="w-20 bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold text-[14px] uppercase tracking-wider h-8 rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)]  active:scale-[0.98] transition-all
                                  hover:bg-[#df2121] cursor-pointer
                                 ">
-                                    
+
                                     Log Out
-                                    
+
                                 </button>
 
                                 {/* logout button */}
@@ -190,9 +191,9 @@ const Navbar = () => {
                     }`}
             >
                 <nav className="flex flex-col px-4 sm:px-6 pt-2 pb-4 gap-1 border-t border-[#4edea3]/10 mt-3">
-                  {
-                    navLinks
-                  }
+                    {
+                        navLinks
+                    }
                 </nav>
             </div>
         </div>

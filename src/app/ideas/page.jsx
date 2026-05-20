@@ -2,6 +2,8 @@ import IdeaCart from '@/components/ideaCart/IdeaCart';
 import SearchBar from '@/components/searchBar/SearchBar';
 import React from 'react';
 
+export const metadata = { title: 'IdeaVault - Ideas' }
+
 const page = async ({ searchParams }) => {
     const sParams = await searchParams;
 
