@@ -9,7 +9,7 @@ const detailsPage = async ({ params }) => {
 
     const res = await fetch(`http://localhost:5000/new-idea/${id}`);
     const idea = await res.json();
-    console.log(idea);
+    // console.log(idea);
     const { startupName, imageUrl, tags, shortDescription, detailedDescription, proposedSolution, _id, targetAudience, estimatedBudget, problemStatement } = idea;
 
     
@@ -133,7 +133,7 @@ const detailsPage = async ({ params }) => {
                         Comments
                     </h3>
 
-                    <Comments id={id} startupName={startupName}></Comments>
+                    <Comments id={id} idea={idea} startupName={startupName}></Comments>
 
 
                 </div>

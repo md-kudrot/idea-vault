@@ -11,13 +11,13 @@ const page = () => {
 
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
-        console.log(user);
+        // console.log(user);
 
         const { data, error } = await authClient.signIn.email({
             email: user.email,
             password: user.password,
         })
-        console.log({ error, data });
+        // console.log({ error, data });
 
         if (data) {
             redirect('/')
@@ -70,6 +70,11 @@ const page = () => {
                             name='password'
                         />
                     </div>
+
+                    {/* forget password */}
+                    <Link href="/forgot-password" className="mt-1 text-[#de534e] hover:underline text-sm">
+                        Forgot Password?
+                    </Link>
                 </div>
 
 

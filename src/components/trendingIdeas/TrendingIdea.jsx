@@ -5,11 +5,11 @@ import TrendingIdeaCart from './TrendingIdeaCart';
 
 const TrendingIdea = async () => {
 
-    const res = await fetch('http://localhost:5000/new-idea');
+    const res = await fetch('http://localhost:5000/new-idea/latest');
     const data = await res.json();
 
-    const trendingIdeas = data.slice(0, 6);
-    console.log(trendingIdeas);
+    const trendingIdeas = data;
+    // console.log(trendingIdeas);
 
     return (
         <div className="w-full px-[40px] py-16 bg-[#00170f] relative overflow-hidden">

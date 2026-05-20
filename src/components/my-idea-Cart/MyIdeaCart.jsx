@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import EditeModal from '../editModal/EditeModal';
 import DeleteDialog from '../deleteDialog/DeleteDialog';
+import Link from 'next/link';
 
 const MyIdeaCart = ({ user, idea }) => {
     console.log(idea, 'idea in cart');
@@ -60,10 +61,10 @@ const MyIdeaCart = ({ user, idea }) => {
                         
                         
                     </div>
-                    <div className="flex items-center gap-1 text-[#4edea3]">
+                    <Link href={`/ideas/${idea._id}`} className="flex items-center gap-1 text-[#4edea3]">
                         <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>View details</span>
 
-                    </div>
+                    </Link>
                 </div>
 
             </div>

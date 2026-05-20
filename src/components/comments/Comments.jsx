@@ -2,12 +2,14 @@
 import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
 import React from 'react';
+import CommentsEditMOdal from './commentsEiditModal/CommentsEditMOdal';
+import CommentsDeleteModal from './commentsDeleteModal/CommentsDeleteModal';
 
 const res = await fetch('http://localhost:5000/comments');
 const allComments = await res.json();
 console.log(allComments);
 
-const Comments = ({ id, startupName }) => {
+const Comments = ({ id, startupName, idea }) => {
 
     const {
         data: session,
@@ -96,10 +98,26 @@ const Comments = ({ id, startupName }) => {
                                     />
                                 </div>
                                 {/* Comment Owner Name & Date */}
-                                <div className="space-y-0.5">
-                                    <h4 className="font-['JetBrains_Mono',monospace] text-sm sm:text-base font-extrabold text-[#4edea3]">
-                                        {comment?.username || "Anonymous"}
-                                    </h4>
+                                <div className="space-y-0.5 w-full">
+                                    <div className='flex items-center justify-between w-full'>
+                                        <div className="font-['JetBrains_Mono',monospace] text-sm sm:text-base font-extrabold text-[#4edea3]">
+                                            {comment?.username || "Anonymous"}
+                                        </div>
+
+                                        {user?.email === comment?.userEmail &&
+                                            <div className=' flex gap-1 cursor-pointer'>
+                                                {/* <div className='bg-[#4edea3] text-[#003123] font-bold py-1 px-3 rounded-lg hover:bg-[#3da88c] transition-colors'>Edit</div> */}
+
+                                                {/* jodi login kore user and comment user same hoy taholei ei button dikhabe */}
+
+                                                <CommentsEditMOdal idea={idea} comment={comment} ></CommentsEditMOdal>
+                                                <CommentsDeleteModal comments={comment}></CommentsDeleteModal>
+
+                                               
+                                            </div>
+
+                                        }
+                                    </div>
                                     <span className="font-['JetBrains_Mono',monospace] text-xs text-[#86948a]">
                                         {comment?.createdAt ? new Date(comment.createdAt).toLocaleDateString() : "Unknown date"}
                                     </span>

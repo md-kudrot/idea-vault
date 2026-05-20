@@ -9,7 +9,7 @@ const page = () => {
     const {
         data: session,
     } = authClient.useSession()
-    console.log(session);
+    // console.log(session);
 
     const user = session?.user;
 
@@ -28,7 +28,7 @@ const page = () => {
             userImage: user?.image
         };
 
-        console.log(newIdea);
+        // console.log(newIdea);
         const res = await fetch('http://localhost:5000/new-idea', {
             method: 'POST',
             headers: {
@@ -38,7 +38,7 @@ const page = () => {
         })
 
         const data = await res.json()
-        console.log(data);
+        // console.log(data);
 
         alert('Idea submitted successfully!');
         redirect('/');
