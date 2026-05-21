@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 
 
 
-
 const page = () => {
 
     const {
@@ -22,24 +21,29 @@ const page = () => {
     
 
     const handleSubmit = async (e) => {
+
+
         e.preventDefault();
+
+       
+        
         const formData = new FormData(e.currentTarget);
         const newIdea = {
             ...Object.fromEntries(formData.entries()),
-            createdAt: user?.createdAt,
             userEmail: user?.email,
             username: user?.name,
             userImage: user?.image
         };
-
-        // console.log(newIdea);
+        
+        const { data: tokenData } = await authClient.token();
         const res = await fetch('http://localhost:5000/new-idea', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(newIdea)
-        })
+        });
 
         const data = await res.json()
         // console.log(data);

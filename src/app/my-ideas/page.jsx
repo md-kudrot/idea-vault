@@ -4,8 +4,15 @@ import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
 import React from 'react';
 
+const { data: tokenData } = await authClient.token();
+console.log("Token in my interactions page from my-ideas:", tokenData?.token);
+
 // const allIdea = await getAllIdeas()
-const res = await fetch('http://localhost:5000/new-idea');
+const res = await fetch('http://localhost:5000/new-idea',{
+    headers: {
+        authorization: `Bearer ${tokenData?.token}`,
+    },
+});
 const allIdeas = await res.json();
 
 const page = () => {

@@ -1,19 +1,31 @@
 import IdeaCart from '@/components/ideaCart/IdeaCart';
 import SearchBar from '@/components/searchBar/SearchBar';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import React from 'react';
 
 export const metadata = { title: 'IdeaVault - Ideas' }
 
 const page = async ({ searchParams }) => {
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    });
+    console.log("Token in details page from Ideas:", token);
+
     const sParams = await searchParams;
 
     const searchTerm = sParams?.searchTerm || '';
-    
+
     const category = sParams?.category || '';
 
     const url = `http://localhost:5000/new-idea?search=${searchTerm}&category=${category}`;
 
-    const res = await fetch(url, { cache: 'no-store' });
+    const res = await fetch(url, {
+        cache: 'no-store',
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     const allIdeas = await res.json();
 
     return (
@@ -46,7 +58,7 @@ const page = async ({ searchParams }) => {
                     </div> */}
                 </div>
 
-            
+
 
                 {/* Ideas Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
