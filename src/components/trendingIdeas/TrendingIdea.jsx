@@ -32,14 +32,14 @@ const TrendingIdea = async () => {
                 </div>
 
                 {/* Bento Grid Layout */}
-                <div className="grid  lg:grid-cols-3 grid-cols-1 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-6">
 
 
                     {
                         trendingIdeas.map(idea => <TrendingIdeaCart key={idea._id} idea={idea} />)
                     }
 
-       
+
 
                 </div>
             </section>

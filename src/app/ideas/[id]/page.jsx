@@ -1,18 +1,70 @@
 
 import Comments from '@/components/comments/Comments';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
 const detailsPage = async ({ params }) => {
     const { id } = await params;
-    // console.log(id);
+    // // console.log(id);
 
-    const res = await fetch(`http://localhost:5000/new-idea/${id}`);
-    const idea = await res.json();
-    // console.log(idea);
-    const { startupName, imageUrl, tags, shortDescription, detailedDescription, proposedSolution, _id, targetAudience, estimatedBudget, problemStatement } = idea;
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    });
+    console.log("Token in details page:", token); 
 
-    
+
+    // const res = await fetch(`http://localhost:5000/new-idea/${id}`, {
+    //     headers: {
+    //         authorization: 'loggedIn',
+    //     },
+    // });
+    // const idea = await res.json();
+    // // console.log(idea);
+    // const { startupName, imageUrl, tags, shortDescription, detailedDescription, proposedSolution, _id, targetAudience, estimatedBudget, problemStatement } = idea;
+
+    let idea;
+
+    try {
+        const res = await fetch(`http://localhost:5000/new-idea/${id}`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!res.ok) {
+            return (
+                <div className="flex items-center justify-center min-h-screen">
+                    <p className="text-red-400 text-xl">
+                         Unauthorized! Please login first. 
+                    </p>
+                </div>
+            );
+        }
+
+        idea = await res.json();
+
+    } catch (error) {
+        console.log("Fetch error:", error);
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <p className="text-red-400 text-xl">⚠️ Something went wrong! Please try again later.</p>
+            </div>
+        );
+    }
+
+
+    if (!idea) {
+        return <div className="text-center text-white mt-20">No data found.</div>;
+    }
+
+    const {
+        startupName, imageUrl, tags, shortDescription,
+        detailedDescription, proposedSolution, _id,
+        targetAudience, estimatedBudget, problemStatement
+    } = idea;
+
 
 
     return (
@@ -26,7 +78,7 @@ const detailsPage = async ({ params }) => {
                         height={400}
                         width={600}
                         src={imageUrl}
-                        alt={startupName}   
+                        alt={startupName}
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00170f] via-transparent to-transparent"></div>
@@ -77,8 +129,8 @@ const detailsPage = async ({ params }) => {
                                 </span>
                             ))
                         }
-                     
-                       
+
+
                     </div>
                 </div>
 
