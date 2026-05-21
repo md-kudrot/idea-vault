@@ -2,7 +2,15 @@
 import { authClient } from '@/lib/auth-client';
 import React from 'react';
 
-const res = await fetch('http://localhost:5000/comments');
+const {data:tokenData} = await authClient.token();
+console.log("Token in my interactions page:", tokenData?.token);
+
+
+const res = await fetch('http://localhost:5000/comments',{
+    headers: {
+        authorization: `Bearer ${tokenData?.token}`,
+    },
+});
 const allComments = await res.json();
 console.log(allComments);
 
