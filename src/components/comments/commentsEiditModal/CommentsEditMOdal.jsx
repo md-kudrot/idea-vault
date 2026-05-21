@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react';
 import toast from 'react-hot-toast';
+import { authClient } from '@/lib/auth-client';
 
 
 const CommentsEditMOdal = ({ idea, comment }) => {
@@ -14,11 +15,13 @@ const CommentsEditMOdal = ({ idea, comment }) => {
 
 
         console.log(UpdateComments);
+        const { data: tokenData } = await authClient.token();
 
         const res = await fetch(`http://localhost:5000/update-comments/${comment._id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(UpdateComments)
         })

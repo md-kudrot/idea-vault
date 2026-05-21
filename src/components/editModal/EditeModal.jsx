@@ -29,11 +29,12 @@ const EditeModal = ({ idea }) => {
         };
 
         console.log(UpdateIdea);
-
+        const { data: tokenData } = await authClient.token();
         const res = await fetch(`http://localhost:5000/update-idea/${idea._id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(UpdateIdea)
         })

@@ -1,3 +1,4 @@
+import { authClient } from '@/lib/auth-client';
 import { AlertDialog, Button } from '@heroui/react';
 import React from 'react';
 import { PiTrashThin } from 'react-icons/pi';
@@ -6,10 +7,12 @@ import { PiTrashThin } from 'react-icons/pi';
 const CommentsDeleteModal = ({comments}) => {
     const handleDelete = async () => {
         try {
+            const { data: tokenData } = await authClient.token();
             const res = await fetch(`http://localhost:5000/delete-comments/${comments._id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
+                    authorization: `Bearer ${tokenData?.token}`
                 },
             });
             const data = await res.json();
