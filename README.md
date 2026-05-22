@@ -2,6 +2,10 @@
 
 Live site (client): https://idea-vault-one-blue.vercel.app/
 
+<img width="1898" height="742" alt="image" src="https://github.com/user-attachments/assets/ce6f6d37-1a2e-4dc4-9572-6864e1508377" />
+
+
+
 ## Overview
 Idea Vault is a modern web platform for publishing, discovering, and organizing ideas. It offers a clear flow for creating new ideas, curated discovery through trending content, and personal spaces for managing your own contributions. The UI is built for fast navigation and consistent interactions across devices, with authentication in place to protect account-specific areas.
 
