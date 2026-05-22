@@ -5,7 +5,7 @@ import TrendingIdeaCart from './TrendingIdeaCart';
 
 const TrendingIdea = async () => {
 
-    const res = await fetch('http://localhost:5000/new-idea/latest');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/latest`);
     const data = await res.json();
 
     const trendingIdeas = data;

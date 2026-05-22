@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
         headers: await headers()
     });
 
-    const res = await fetch(`http://localhost:5000/new-idea/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/${id}`, {
         headers: {
             authorization: `Bearer ${token}`,
         },
@@ -38,7 +38,7 @@ const detailsPage = async ({ params }) => {
     let idea;
 
     try {
-        const res = await fetch(`http://localhost:5000/new-idea/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/${id}`, {
             headers: {
                 authorization: `Bearer ${token}`,
             },

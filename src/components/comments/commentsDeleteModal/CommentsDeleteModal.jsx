@@ -8,7 +8,7 @@ const CommentsDeleteModal = ({comments}) => {
     const handleDelete = async () => {
         try {
             const { data: tokenData } = await authClient.token();
-            const res = await fetch(`http://localhost:5000/delete-comments/${comments._id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/delete-comments/${comments._id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const CommentsDeleteModal = ({comments}) => {
                             <AlertDialog.CloseTrigger />
                             <AlertDialog.Header>
                                 <AlertDialog.Icon status="danger" />
-                                <AlertDialog.Heading>Delete idea permanently?</AlertDialog.Heading>
+                                <AlertDialog.Heading>Delete comment permanently?</AlertDialog.Heading>
                             </AlertDialog.Header>
                             <AlertDialog.Body>
                                 <p>

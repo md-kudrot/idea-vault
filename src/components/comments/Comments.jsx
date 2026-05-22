@@ -10,7 +10,7 @@ const { data: tokenData } = await authClient.token();
 console.log("Token in my interactions page:", tokenData?.token);
 
 
-const res = await fetch('http://localhost:5000/comments',{
+const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`,{
     headers: {
         authorization: `Bearer ${tokenData?.token}`,
     },
@@ -41,7 +41,7 @@ const Comments = ({ id, startupName, idea }) => {
         };
 
         console.log(comments);
-        const res = await fetch('http://localhost:5000/comments', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

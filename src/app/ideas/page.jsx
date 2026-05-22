@@ -18,7 +18,7 @@ const page = async ({ searchParams }) => {
 
     const category = sParams?.category || '';
 
-    const url = `http://localhost:5000/new-idea?search=${searchTerm}&category=${category}`;
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea?search=${searchTerm}&category=${category}`;
 
     const res = await fetch(url, {
         cache: 'no-store',
