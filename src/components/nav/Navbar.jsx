@@ -75,7 +75,6 @@ const Navbar = () => {
                 My-Interactions
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#4edea3] group-hover:w-full transition-all duration-300" />
             </Link>
-            
             <div className='flex justify-end md:hidden'>
                 <ThemeSwitch />
             </div>

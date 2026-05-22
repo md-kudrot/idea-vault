@@ -66,11 +66,14 @@ const SignUpPage = () => {
                     <label className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-md font-bold uppercase tracking-[0.1em]">Enter Your Image Url</label>
                     <div className="relative">
                         <input
-                            className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/25 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-12 placeholder:text-[#bbcabf]/30 pl-10 pr-4 text-sm transition-all font-['JetBrains_Mono',monospace]"
+                            className="form-input flex w-full rounded-xl text-[#b0f0d6] border border-[#4edea3]/20 bg-[#003123]/25 focus:ring-2 focus:ring-[#4edea3]/50 focus:border-[#4edea3] h-12 placeholder:text-[#bbcabf]/30 pl-10 pr-4 text-sm transition-all font-['JetBrains_Mono',monospace] invalid:border-red-500/60 invalid:focus:ring-red-500/30 invalid:focus:border-red-500"
                             placeholder="https://example.com/image.jpg"
                             required
-                            type="text"
-                            name='image'
+                            type="url"
+                            name="image"
+                            pattern="https://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(/[^\s]*)?"
+                            title="Please enter a valid image URL (jpg, jpeg, png, gif, webp, svg, avif)"
+                         
                         />
                     </div>
                 </div>

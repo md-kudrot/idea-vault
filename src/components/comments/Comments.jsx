@@ -32,7 +32,7 @@ const Comments = ({ id, startupName, idea }) => {
         const formData = new FormData(e.currentTarget);
         const comments = {
             ...Object.fromEntries(formData.entries()),
-            createdAt: user?.createdAt,
+            createdAt: new Date().toISOString(),
             userEmail: user?.email,
             username: user?.name,
             userImage: user?.image,

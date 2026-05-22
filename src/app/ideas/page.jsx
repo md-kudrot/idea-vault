@@ -27,7 +27,7 @@ const page = async ({ searchParams }) => {
         }
     });
     const allIdeas = await res.json();
-
+    console.log("Fetched ideas:", allIdeas);
     return (
         <div>
             <main className=" mx-auto  px-6 py-8 pb-32 space-y-8">
