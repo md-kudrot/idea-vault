@@ -32,7 +32,7 @@ const Comments = ({ id, startupName, idea }) => {
         const formData = new FormData(e.currentTarget);
         const comments = {
             ...Object.fromEntries(formData.entries()),
-            createdAt: user?.createdAt,
+            createdAt: new Date().toISOString(),
             userEmail: user?.email,
             username: user?.name,
             userImage: user?.image,
@@ -135,6 +135,7 @@ const Comments = ({ id, startupName, idea }) => {
 
                                         }
                                     </div>
+                                    
                                     <span className="font-['JetBrains_Mono',monospace] text-xs text-[#86948a]">
                                         {comment?.createdAt ? new Date(comment.createdAt).toLocaleDateString() : "Unknown date"}
                                     </span>
