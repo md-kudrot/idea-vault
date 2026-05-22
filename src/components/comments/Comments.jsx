@@ -62,9 +62,15 @@ const Comments = ({ id, startupName, idea }) => {
     // filter comment by id
     // console.log(allComments);
     
-    const filteredComments = allComments.filter(comment => comment?.postId === id);
-    console.log(filteredComments, 'filtered comments');
+    // const filteredComments = allComments.filter(comment => comment?.postId === id);
+    // console.log(filteredComments, 'filtered comments');
 
+    let filteredComments;
+    if (Array.isArray(allComments)) {
+        filteredComments = allComments.filter(comment => comment?.postId === id);
+    } else {
+        filteredComments = [allComments].filter(comment => comment?.postId === id);
+    }
 
 
     return (

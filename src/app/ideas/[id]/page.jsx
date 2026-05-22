@@ -5,6 +5,26 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    });
+
+    const res = await fetch(`http://localhost:5000/new-idea/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`,
+        },
+    });
+    const idea = await res.json();
+
+    return {
+        title: `IdeaVault - ${idea.startupName}`
+    };
+}
+
+
 const detailsPage = async ({ params }) => {
     const { id } = await params;
     // // console.log(id);
@@ -14,15 +34,6 @@ const detailsPage = async ({ params }) => {
     });
     console.log("Token in details page:", token); 
 
-
-    // const res = await fetch(`http://localhost:5000/new-idea/${id}`, {
-    //     headers: {
-    //         authorization: 'loggedIn',
-    //     },
-    // });
-    // const idea = await res.json();
-    // // console.log(idea);
-    // const { startupName, imageUrl, tags, shortDescription, detailedDescription, proposedSolution, _id, targetAudience, estimatedBudget, problemStatement } = idea;
 
     let idea;
 

@@ -27,8 +27,15 @@ const page = () => {
         const userEmail = user?.email;
         // console.log(userEmail, 'my ideas');
 
-    const myIdeas = allIdeas.filter(idea => idea.userEmail === userEmail);
+    // const myIdeas = allIdeas.filter(idea => idea.userEmail === userEmail);
         // console.log(myIdeas, 'my ideas');
+    //jodi allIdeas [] na hoye onno kisu hoy tahole [] dia wrap kore dibo r jodi allIdeas [] hoy tahole oi vabe thakbe
+        let myIdeas ;
+        if(Array.isArray(allIdeas)){
+            myIdeas = allIdeas.filter(idea => idea.userEmail === userEmail);
+        }else{
+            myIdeas = [allIdeas].filter(idea => idea.userEmail === userEmail);
+        }
         
 
     return (

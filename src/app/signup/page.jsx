@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { FaGoogle } from "react-icons/fa";
+
+
 const SignUpPage = () => {
 
     const handleSubmit = async (e) => {

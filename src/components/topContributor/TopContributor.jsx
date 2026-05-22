@@ -26,11 +26,12 @@ const TopContributor = () => {
                 <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/40 hover:scale-[1.03] shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_32px_rgba(78,222,163,0.15)] rounded-2xl p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 relative group">
                     <div className="relative">
                         <Image
-                        height={64}
-                        width={64}
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8pU1qK_R8mN7Yp8vUv9u8n7m6l5k4j3h2g1f0e9d8c7b6a5Z4Y3X2W1V0U"
+                            height={64}
+                            width={64}
+                            src="https://images.unsplash.com/photo-1623880840102-7df0a9f3545b?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Sarah Chen"
                             initials="SC"
+                            className="w-16 h-16 rounded-full border border-[#4edea3]/20 shadow-[0_0_10px_rgba(78,222,163,0.2)]"
                         />
                         {/* Verified Badge */}
                         <div className="absolute -bottom-1 -right-1 bg-[#4edea3] text-[#003824] rounded-full p-1 border-2 border-[#00170f] shadow-[0_0_8px_rgba(78,222,163,0.5)]">
@@ -40,8 +41,8 @@ const TopContributor = () => {
                         </div>
                     </div>
                     <div>
-                        <h4 className="font-['Geist',sans-serif] text-[18px] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">Sarah Chen</h4>
-                        <p className="font-['JetBrains_Mono',monospace] text-[9px] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">AI Strategist</p>
+                        <h4 className="font-['Geist',sans-serif] text-xl font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">Sarah Chen</h4>
+                        <p className="font-['JetBrains_Mono',monospace] text-[0.7rem] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">AI Strategist</p>
                     </div>
                     <div className="mt-2 py-1.5 px-4 bg-[#00170f] rounded-full border border-[#4edea3]/20 flex items-center justify-center gap-1.5 group-hover:border-[#4edea3]/40 transition-colors duration-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3]"></span>
@@ -55,16 +56,17 @@ const TopContributor = () => {
                 <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/40 hover:scale-[1.03] shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_32px_rgba(78,222,163,0.15)] rounded-2xl p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 relative group">
                     <div className="relative">
                         <Image
-                        height={64}
-                        width={64}
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf_4L5N6M7O8P9Q0R1S2T3U4V5W6X7Y8Z9a0b1c2d3e4f5g6h7i8j9"
+                            height={64}
+                            width={64}
+                            src="https://images.unsplash.com/photo-1681890442554-9256eaaa3e67?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Marcus Thorne"
                             initials="MT"
+                            className="w-16 h-16 rounded-full border border-[#4edea3]/20 shadow-[0_0_10px_rgba(78,222,163,0.2)]"
                         />
                     </div>
                     <div>
-                        <h4 className="font-['Geist',sans-serif] text-[18px] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">Marcus Thorne</h4>
-                        <p className="font-['JetBrains_Mono',monospace] text-[9px] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">Sustainability Lead</p>
+                        <h4 className="font-['Geist',sans-serif] text-xl font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">Marcus Thorne</h4>
+                        <p className="font-['JetBrains_Mono',monospace] text-[0.7rem] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">Sustainability Lead</p>
                     </div>
                     <div className="mt-2 py-1.5 px-4 bg-[#00170f] rounded-full border border-[#4edea3]/20 flex items-center justify-center gap-1.5 group-hover:border-[#4edea3]/40 transition-colors duration-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3]"></span>
@@ -78,16 +80,17 @@ const TopContributor = () => {
                 <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/40 hover:scale-[1.03] shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_32px_rgba(78,222,163,0.15)] rounded-2xl p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 relative group">
                     <div className="relative">
                         <Image
-                        height={64}
-                        width={64}
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_9C8D7E6F5G4H3I2J1K0L9M8N7O6P5Q4R3S2T1U0V9W8X7Y6Z5"
+                            height={64}
+                            width={64}
+                            src="https://images.unsplash.com/photo-1630667208073-82d53b1db540?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Elena Rodriguez"
                             initials="ER"
+                            className="w-16 h-16 rounded-full border border-[#4edea3]/20 shadow-[0_0_10px_rgba(78,222,163,0.2)]"
                         />
                     </div>
                     <div>
-                        <h4 className="font-['Geist',sans-serif] text-[18px] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">Elena Rodriguez</h4>
-                        <p className="font-['JetBrains_Mono',monospace] text-[9px] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">Fintech Expert</p>
+                        <h4 className="font-['Geist',sans-serif] text-xl font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">Elena Rodriguez</h4>
+                        <p className="font-['JetBrains_Mono',monospace] text-[0.7rem] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">Fintech Expert</p>
                     </div>
                     <div className="mt-2 py-1.5 px-4 bg-[#00170f] rounded-full border border-[#4edea3]/20 flex items-center justify-center gap-1.5 group-hover:border-[#4edea3]/40 transition-colors duration-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3]"></span>
@@ -101,16 +104,17 @@ const TopContributor = () => {
                 <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/40 hover:scale-[1.03] shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_32px_rgba(78,222,163,0.15)] rounded-2xl p-6 flex flex-col items-center text-center gap-4 transition-all duration-300 relative group">
                     <div className="relative">
                         <Image
-                        height={64}
-                        width={64}
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_3F2E1G0H9I8J7K6L5M4N3O2P1Q0R9S8T7U6V5W4X3Y2Z1A0B"
+                            height={64}
+                            width={64}
+                            src="https://images.unsplash.com/photo-1559718062-361155fad299?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="David Park"
                             initials="DP"
+                            className="w-16 h-16 rounded-full border border-[#4edea3]/20 shadow-[0_0_10px_rgba(78,222,163,0.2)]"
                         />
                     </div>
                     <div>
-                        <h4 className="font-['Geist',sans-serif] text-[18px] font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">David Park</h4>
-                        <p className="font-['JetBrains_Mono',monospace] text-[9px] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">Web3 Architect</p>
+                        <h4 className="font-['Geist',sans-serif] text-xl font-extrabold text-[#b0f0d6] group-hover:text-[#4edea3] transition-colors duration-300">David Park</h4>
+                        <p className="font-['JetBrains_Mono',monospace] text-[0.7rem] tracking-[0.05em] text-[#4edea3] uppercase font-bold mt-1">Web3 Architect</p>
                     </div>
                     <div className="mt-2 py-1.5 px-4 bg-[#00170f] rounded-full border border-[#4edea3]/20 flex items-center justify-center gap-1.5 group-hover:border-[#4edea3]/40 transition-colors duration-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3]"></span>

@@ -1,10 +1,8 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
-import { username } from 'better-auth/plugins';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
-
 
 
 const page = () => {
@@ -49,7 +47,7 @@ const page = () => {
         // console.log(data);
 
         toast.success('Idea submitted successfully!');
-        redirect('/');
+        redirect('/ideas');
 
     };
 

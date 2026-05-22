@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const MyIdeaCart = ({ user, idea }) => {
     console.log(idea, 'idea in cart');
-    const { startupName, shortDescription } = idea;
+    const { startupName, shortDescription, tags = '' } = idea;
 
    
     return (
@@ -51,13 +51,11 @@ const MyIdeaCart = ({ user, idea }) => {
 
                 <div className="pt-4 border-t border-[#3c4a42]/20 flex justify-between items-end relative z-10">
                     <div className="flex flex-wrap gap-1.5 max-w-[70%]">
-                        {
-                             idea.tags.split(' ').map((tag, index) => (
-                                <span key={index} className="font-['JetBrains_Mono',monospace] text-md text-[#86948a] border border-[#3c4a42]/30 px-2 py-0.5 rounded">
-                                    #{tag.trim()}
-                                </span>
-                            ))
-                        }
+                        {(idea.tags || '').split(' ').filter(Boolean).map((tag, index) => (
+                            <span key={index} className="font-['JetBrains_Mono',monospace] text-md text-[#86948a] border border-[#3c4a42]/30 px-2 py-0.5 rounded">
+                                #{tag.trim()}
+                            </span>
+                        ))}
                         
                         
                     </div>

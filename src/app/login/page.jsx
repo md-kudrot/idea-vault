@@ -1,43 +1,44 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import React, { use } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import React from 'react';
 import toast from 'react-hot-toast';
 import { FaGoogle } from "react-icons/fa";
+
+
+
 const page = () => {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const callbackUrl = searchParams.get('callbackUrl') || '/';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
-        // console.log(user);
 
         const { data, error } = await authClient.signIn.email({
             email: user.email,
             password: user.password,
-        })
-        // console.log({ error, data });
+        });
 
         if (data) {
             toast.success('Logged in successfully!');
-            redirect('/')
+            router.push(callbackUrl);
         }
-
 
         if (error) {
-            toast.error(error.message)
+            toast.error(error.message);
         }
-
-    }
+    };
 
     const handleGoogleSignIn = async () => {
         await authClient.signIn.social({
             provider: "google",
+            callbackURL: callbackUrl,
         });
-    }
-
+    };
     return (
         <div className='w-full max-w-[92%] sm:max-w-[80%] md:max-w-[60%] lg:max-w-[45%] xl:max-w-[35%] mx-auto my-8 sm:my-12 md:my-16 border border-[#4edea3]/20 rounded-xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 bg-[#00170f]/50 backdrop-blur-lg'>
             <form onSubmit={handleSubmit} className="space-y-5 ">
