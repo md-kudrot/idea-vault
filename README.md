@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Idea Vault
 
-## Getting Started
+Live site (client): https://idea-vault-one-blue.vercel.app/
 
-First, run the development server:
+## Overview
+Idea Vault is a modern web platform for publishing, discovering, and organizing ideas. It offers a clear flow for creating new ideas, curated discovery through trending content, and personal spaces for managing your own contributions. The UI is built for fast navigation and consistent interactions across devices, with authentication in place to protect account-specific areas.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
+- Dedicated feeds for trending ideas and discovery.
+- Structured idea submission flow for clear, consistent publishing.
+- Detailed idea pages that support engagement and context.
+- Personalized areas to manage your ideas and activity.
+- Authentication-enabled access for login and registration.
+- Responsive UI optimized for desktop and mobile.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS 4
+- MongoDB with Better Auth
+- HeroUI and Next Themes
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Notable npm Packages
+- better-auth and @better-auth/mongo-adapter
+- mongodb
+- @heroui/react and @heroui/styles
+- next-themes
+- react-hot-toast
+- lucide-react and react-icons
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure (Important Files)
+- [src/app/layout.js](src/app/layout.js)
+- [src/app/page.js](src/app/page.js)
+- [src/app/providers.js](src/app/providers.js)
+- [src/app/api/auth/[...all]/route.js](src/app/api/auth/%5B...all%5D/route.js)
+- [src/lib/auth.js](src/lib/auth.js)
+- [src/lib/auth-client.js](src/lib/auth-client.js)
+- [src/proxy.js](src/proxy.js)
 
-## Learn More
+## Environment Variables
+- `MONGODB_URI` - MongoDB connection string.
+- `GOOGLE_CLIENT_ID` - Google OAuth client ID.
+- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret.
+- `BETTER_AUTH_URL` - Optional base URL for auth client (defaults to production URL).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
