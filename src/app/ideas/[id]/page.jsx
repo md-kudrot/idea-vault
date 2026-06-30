@@ -1,88 +1,84 @@
-
-import Comments from '@/components/comments/Comments';
-import { auth } from '@/lib/auth';
-import { headers } from 'next/headers';
-import Image from 'next/image';
-import React from 'react';
+import Comments from "@/components/comments/Comments"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
+import Image from "next/image"
+import React from "react"
 
 export async function generateMetadata({ params }) {
-    const { id } = await params;
+    const { id } = await params
 
     const { token } = await auth.api.getToken({
         headers: await headers()
-    });
+    })
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/${id}`, {
         headers: {
-            authorization: `Bearer ${token}`,
-        },
-    });
-    const idea = await res.json();
+            authorization: `Bearer ${token}`
+        }
+    })
+    const idea = await res.json()
 
     return {
         title: `IdeaVault - ${idea.startupName}`
-    };
+    }
 }
 
-
 const detailsPage = async ({ params }) => {
-    const { id } = await params;
+    const { id } = await params
     // // console.log(id);
 
-    const {token} = await auth.api.getToken({
+    const { token } = await auth.api.getToken({
         headers: await headers()
-    });
-    console.log("Token in details page:", token); 
+    })
+    // console.log("Token in details page:", token);
 
-
-    let idea;
+    let idea
 
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/${id}`, {
             headers: {
-                authorization: `Bearer ${token}`,
-            },
-        });
+                authorization: `Bearer ${token}`
+            }
+        })
 
         if (!res.ok) {
             return (
                 <div className="flex items-center justify-center min-h-screen">
-                    <p className="text-red-400 text-xl">
-                         Unauthorized! Please login first. 
-                    </p>
+                    <p className="text-red-400 text-xl">Unauthorized! Please login first.</p>
                 </div>
-            );
+            )
         }
 
-        idea = await res.json();
-
+        idea = await res.json()
     } catch (error) {
-        console.log("Fetch error:", error);
+        // console.log("Fetch error:", error)
         return (
             <div className="flex items-center justify-center min-h-screen">
                 <p className="text-red-400 text-xl">⚠️ Something went wrong! Please try again later.</p>
             </div>
-        );
+        )
     }
 
-
     if (!idea) {
-        return <div className="text-center text-white mt-20">No data found.</div>;
+        return <div className="text-center text-white mt-20">No data found.</div>
     }
 
     const {
-        startupName, imageUrl, tags, shortDescription,
-        detailedDescription, proposedSolution, _id,
-        targetAudience, estimatedBudget, problemStatement
-    } = idea;
-
-
+        startupName,
+        imageUrl,
+        tags,
+        shortDescription,
+        detailedDescription,
+        proposedSolution,
+        _id,
+        targetAudience,
+        estimatedBudget,
+        problemStatement
+    } = idea
 
     return (
         <div>
-
             <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-10 pb-32 space-y-10">
-
                 {/* 1. Cover Image */}
                 <div className="w-full h-[280px] sm:h-[400px] rounded-3xl overflow-hidden border border-[#3c4a42]/30 shadow-2xl relative">
                     <Image
@@ -97,7 +93,6 @@ const detailsPage = async ({ params }) => {
 
                 {/* Info Card Container */}
                 <div className="space-y-6 bg-[#002117]/30 backdrop-blur-md rounded-3xl border border-[#3c4a42]/30 p-8 shadow-xl">
-
                     {/* 2. Idea Title */}
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.03em] text-[#b0f0d6]">
                         {startupName}
@@ -133,15 +128,14 @@ const detailsPage = async ({ params }) => {
 
                     {/* 5. Tags */}
                     <div className="flex flex-wrap gap-2.5 pt-4">
-                        {
-                            tags.split(" ").map((tag, index) => (
-                                <span key={index} className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm text-[#4edea3] border border-[#4edea3]/30 bg-[#4edea3]/5 px-3.5 py-1.5 rounded-full font-semibold">
-                                    #{tag.trim()}
-                                </span>
-                            ))
-                        }
-
-
+                        {tags.split(" ").map((tag, index) => (
+                            <span
+                                key={index}
+                                className="font-['JetBrains_Mono',monospace] text-xs sm:text-sm text-[#4edea3] border border-[#4edea3]/30 bg-[#4edea3]/5 px-3.5 py-1.5 rounded-full font-semibold"
+                            >
+                                #{tag.trim()}
+                            </span>
+                        ))}
                     </div>
                 </div>
 
@@ -149,32 +143,29 @@ const detailsPage = async ({ params }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Target Audience */}
                     <div className="bg-[#002117]/30 border border-[#3c4a42]/30 rounded-2xl p-6 space-y-2 shadow-lg">
-                        <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em]">Target Audience</span>
-                        <p className="text-[#b0f0d6] text-base sm:text-lg font-bold leading-snug">
-                            {targetAudience}
-                        </p>
+                        <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em]">
+                            Target Audience
+                        </span>
+                        <p className="text-[#b0f0d6] text-base sm:text-lg font-bold leading-snug">{targetAudience}</p>
                     </div>
                     {/* Budget */}
                     <div className="bg-[#002117]/30 border border-[#3c4a42]/30 rounded-2xl p-6 space-y-2 shadow-lg">
-                        <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em]">Estimated Budget Scope</span>
-                        <p className="text-[#b0f0d6] text-base sm:text-lg font-bold leading-snug">
-                            {estimatedBudget}
-                        </p>
+                        <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em]">
+                            Estimated Budget Scope
+                        </span>
+                        <p className="text-[#b0f0d6] text-base sm:text-lg font-bold leading-snug">{estimatedBudget}</p>
                     </div>
                 </div>
 
                 {/* Deep-Dive Specifications Container */}
                 <div className="space-y-8 bg-[#002117]/30 border border-[#3c4a42]/30 rounded-3xl p-8 sm:p-10 shadow-xl">
-
                     {/* 8. Problem Statement */}
                     <div className="space-y-2.5">
                         <h3 className="font-['Geist',sans-serif] text-xl sm:text-2xl font-bold flex items-center gap-2 text-[#ffb3af] border-b border-[#3c4a42]/20 pb-2">
                             <span className="material-symbols-outlined">warning</span>
                             Problem Statement
                         </h3>
-                        <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">
-                            {problemStatement}
-                        </p>
+                        <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">{problemStatement}</p>
                     </div>
 
                     {/* 9. Problem Solution */}
@@ -183,11 +174,8 @@ const detailsPage = async ({ params }) => {
                             <span className="material-symbols-outlined">psychology</span>
                             Problem Solution
                         </h3>
-                        <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">
-                            {proposedSolution}
-                        </p>
+                        <p className="text-[#bbcabf] text-base sm:text-lg leading-[26px]">{proposedSolution}</p>
                     </div>
-
                 </div>
 
                 {/* 11. Comments Section (Input Field, Post Button, & List) */}
@@ -197,12 +185,10 @@ const detailsPage = async ({ params }) => {
                     </h3>
 
                     <Comments id={id} idea={idea} startupName={startupName}></Comments>
-
-
                 </div>
             </main>
         </div>
-    );
-};
+    )
+}
 
-export default detailsPage;
+export default detailsPage

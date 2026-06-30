@@ -1,21 +1,19 @@
 "use client"
-import { authClient } from '@/lib/auth-client';
-import Image from 'next/image';
-import React from 'react';
+import { authClient } from "@/lib/auth-client"
+import Image from "next/image"
+import React from "react"
 
 const page = () => {
-    const {
-        data: session,
-    } = authClient.useSession()
+    const { data: session } = authClient.useSession()
     // console.log(session);
 
-    const user = session?.user;
-    console.log(user)
+    const user = session?.user
+    // console.log(user)
 
     const onSubmit = async (e) => {
-        e.preventDefault();
-        const name = e.target.name.value;
-        const image = e.target.image.value;
+        e.preventDefault()
+        const name = e.target.name.value
+        const image = e.target.image.value
 
         // console.log(name, image);
         await authClient.updateUser({
@@ -23,13 +21,12 @@ const page = () => {
             image
         })
 
-        router.push('/profile');
+        router.push("/profile")
     }
 
     return (
         <div>
             <main className="flex-1 max-w-2xl mx-auto w-full px-6 py-12 pb-32 space-y-8">
-
                 {/* 1. Box showing User Avatar & Name */}
                 <div className="bg-[#002117]/30 backdrop-blur-md rounded-3xl border border-[#3c4a42]/30 p-8 flex flex-col items-center gap-5 text-center shadow-2xl relative overflow-hidden">
                     {/* Glowing Decorative Background */}
@@ -55,7 +52,10 @@ const page = () => {
                 </div>
 
                 {/* 2. Form (Name, Avatar URL, Save Changes button) */}
-                <form className="space-y-6 bg-[#002117]/30 border border-[#3c4a42]/30 rounded-3xl p-8 shadow-xl" onSubmit={onSubmit}>
+                <form
+                    className="space-y-6 bg-[#002117]/30 border border-[#3c4a42]/30 rounded-3xl p-8 shadow-xl"
+                    onSubmit={onSubmit}
+                >
                     <span className="text-[#4edea3] font-['JetBrains_Mono',monospace] text-xs sm:text-sm font-bold uppercase tracking-[0.1em] block border-b border-[#3c4a42]/20 pb-3">
                         Edit Identity Parameters
                     </span>
@@ -102,10 +102,9 @@ const page = () => {
                         </button>
                     </div>
                 </form>
-
             </main>
         </div>
-    );
-};
+    )
+}
 
-export default page;
+export default page

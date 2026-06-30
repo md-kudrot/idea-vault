@@ -1,43 +1,46 @@
-import IdeaCart from '@/components/ideaCart/IdeaCart';
-import SearchBar from '@/components/searchBar/SearchBar';
-import { auth } from '@/lib/auth';
-import { headers } from 'next/headers';
-import React from 'react';
+import IdeaCart from "@/components/ideaCart/IdeaCart"
+import SearchBar from "@/components/searchBar/SearchBar"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
+import React from "react"
 
-export const metadata = { title: 'IdeaVault - Ideas' }
+export const metadata = { title: "IdeaVault - Ideas" }
 
 const page = async ({ searchParams }) => {
     const { token } = await auth.api.getToken({
         headers: await headers()
-    });
-    console.log("Token in details page from Ideas:", token);
+    })
+    // console.log("Token in details page from Ideas:", token);
 
-    const sParams = await searchParams;
+    const sParams = await searchParams
 
-    const searchTerm = sParams?.searchTerm || '';
+    const searchTerm = sParams?.searchTerm || ""
 
-    const category = sParams?.category || '';
+    const category = sParams?.category || ""
 
-    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea?search=${searchTerm}&category=${category}`;
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea?search=${searchTerm}&category=${category}`
 
     const res = await fetch(url, {
-        cache: 'no-store',
+        cache: "no-store",
         headers: {
             authorization: `Bearer ${token}`
         }
-    });
-    const allIdeas = await res.json();
-    console.log("Fetched ideas:", allIdeas);
+    })
+    const allIdeas = await res.json()
+    // console.log("Fetched ideas:", allIdeas);
     return (
         <div>
             <main className=" mx-auto  px-6 py-8 pb-32 space-y-8">
                 {/* Intro Title & Stats */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#4edea3]/10 pb-6">
                     <div>
-                        <h1 className="text-[#b0f0d6] text-4xl md:text-5xl font-extrabold tracking-[-0.03em]">Idea Explorer</h1>
-                        <p className="text-[#bbcabf] text-base mt-1">Review, validate, and collaborate on highly protected conceptual assets.</p>
+                        <h1 className="text-[#b0f0d6] text-4xl md:text-5xl font-extrabold tracking-[-0.03em]">
+                            Idea Explorer
+                        </h1>
+                        <p className="text-[#bbcabf] text-base mt-1">
+                            Review, validate, and collaborate on highly protected conceptual assets.
+                        </p>
                     </div>
-
                 </div>
 
                 {/* Filter & Search Dashboard */}
@@ -58,18 +61,17 @@ const page = async ({ searchParams }) => {
                     </div> */}
                 </div>
 
-
-
                 {/* Ideas Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {allIdeas.length > 0
-                        ? allIdeas.map(idea => <IdeaCart key={idea._id} idea={idea} />)
-                        : <p className="text-[#bbcabf] col-span-3 text-center">No ideas found.</p>
-                    }
+                    {allIdeas.length > 0 ? (
+                        allIdeas.map((idea) => <IdeaCart key={idea._id} idea={idea} />)
+                    ) : (
+                        <p className="text-[#bbcabf] col-span-3 text-center">No ideas found.</p>
+                    )}
                 </div>
             </main>
         </div>
-    );
-};
+    )
+}
 
-export default page;
+export default page

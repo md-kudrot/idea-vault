@@ -1,14 +1,13 @@
-import Image from 'next/image';
-import React from 'react';
-import EditeModal from '../editModal/EditeModal';
-import DeleteDialog from '../deleteDialog/DeleteDialog';
-import Link from 'next/link';
+import Image from "next/image"
+import React from "react"
+import EditeModal from "../editModal/EditeModal"
+import DeleteDialog from "../deleteDialog/DeleteDialog"
+import Link from "next/link"
 
 const MyIdeaCart = ({ user, idea }) => {
-    console.log(idea, 'idea in cart');
-    const { startupName, shortDescription, tags = '' } = idea;
+    // console.log(idea, 'idea in cart');
+    const { startupName, shortDescription, tags = "" } = idea
 
-   
     return (
         <div>
             <div
@@ -19,10 +18,9 @@ const MyIdeaCart = ({ user, idea }) => {
 
                 <div className="space-y-10 relative z-10">
                     <div className="flex justify-end items-center">
-                        
                         {/* edit and delete buttons */}
                         <div className="flex  gap-2">
-                            <EditeModal idea = {idea}></EditeModal>
+                            <EditeModal idea={idea}></EditeModal>
                             <DeleteDialog idea={idea}></DeleteDialog>
                         </div>
                     </div>
@@ -51,23 +49,30 @@ const MyIdeaCart = ({ user, idea }) => {
 
                 <div className="pt-4 border-t border-[#3c4a42]/20 flex justify-between items-end relative z-10">
                     <div className="flex flex-wrap gap-1.5 max-w-[70%]">
-                        {(idea.tags || '').split(' ').filter(Boolean).map((tag, index) => (
-                            <span key={index} className="font-['JetBrains_Mono',monospace] text-md text-[#86948a] border border-[#3c4a42]/30 px-2 py-0.5 rounded">
-                                #{tag.trim()}
-                            </span>
-                        ))}
-                        
-                        
+                        {(idea.tags || "")
+                            .split(" ")
+                            .filter(Boolean)
+                            .map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className="font-['JetBrains_Mono',monospace] text-md text-[#86948a] border border-[#3c4a42]/30 px-2 py-0.5 rounded"
+                                >
+                                    #{tag.trim()}
+                                </span>
+                            ))}
                     </div>
                     <Link href={`/ideas/${idea._id}`} className="flex items-center gap-1 text-[#4edea3]">
-                        <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>View details</span>
-
+                        <span
+                            className="material-symbols-outlined text-[18px]"
+                            style={{ fontVariationSettings: "'FILL' 1" }}
+                        >
+                            View details
+                        </span>
                     </Link>
                 </div>
-
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default MyIdeaCart;
+export default MyIdeaCart

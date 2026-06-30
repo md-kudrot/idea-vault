@@ -16,7 +16,7 @@ const DeleteDialog = ({ idea }) => {
                 },
             });
             const data = await res.json();
-            console.log(data, 'delete response');
+            // console.log(data, 'delete response');
             window.location.reload();
         } catch (error) {
             console.error('Error deleting idea:', error);
