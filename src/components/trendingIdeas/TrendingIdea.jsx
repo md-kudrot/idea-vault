@@ -1,14 +1,13 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import TrendingIdeaCart from './TrendingIdeaCart';
+import Image from "next/image"
+import Link from "next/link"
+import React from "react"
+import TrendingIdeaCart from "./TrendingIdeaCart"
 
 const TrendingIdea = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/latest`)
+    const data = await res.json()
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/new-idea/latest`);
-    const data = await res.json();
-
-    const trendingIdeas = data;
+    const trendingIdeas = data
     // console.log(trendingIdeas);
 
     return (
@@ -21,30 +20,29 @@ const TrendingIdea = async () => {
                 {/* Header Section */}
                 <div className="flex flex-wrap gap-2 justify-between items-center mb-12">
                     <div className="space-y-1">
-                        <span className="font-['JetBrains_Mono',monospace] text-[10px] tracking-[0.2em] text-[#4edea3] font-semibold uppercase">INTELLIGENCE HUB</span>
+                        <span className="font-['JetBrains_Mono',monospace] text-[10px] tracking-[0.2em] text-[#4edea3] font-semibold uppercase">
+                            INTELLIGENCE HUB
+                        </span>
                         <h3 className="font-['Geist',sans-serif] text-[32px] md:text-[40px] leading-[1.1] tracking-[-0.03em] font-bold text-[#b0f0d6]">
                             Trending_<span className="text-[#4edea3] italic font-normal">Intelligence</span>
                         </h3>
                     </div>
                     <Link href="/ideas">
-                        <span className="font-['JetBrains_Mono',monospace] text-xl  tracking-[0.08em] cursor-pointer font-bold text-[#4edea3]">View All</span>
+                        <span className="font-['JetBrains_Mono',monospace] text-xl  tracking-[0.08em] cursor-pointer font-bold text-[#4edea3]">
+                            View All
+                        </span>
                     </Link>
                 </div>
 
                 {/* Bento Grid Layout */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-6">
-
-
-                    {
-                        trendingIdeas.map(idea => <TrendingIdeaCart key={idea._id} idea={idea} />)
-                    }
-
-
-
+                    {trendingIdeas.map((idea) => (
+                        <TrendingIdeaCart key={idea._id} idea={idea} />
+                    ))}
                 </div>
             </section>
         </div>
-    );
-};
+    )
+}
 
-export default TrendingIdea;
+export default TrendingIdea
