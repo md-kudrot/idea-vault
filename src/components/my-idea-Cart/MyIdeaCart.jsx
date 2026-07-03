@@ -12,7 +12,7 @@ const MyIdeaCart = ({ user, idea }) => {
         <div>
             <div
                 href="/ideas/1"
-                className="group  bg-[#002117]/30 backdrop-blur-md rounded-2xl border border-[#3c4a42]/30 hover:border-[#4edea3]/40 p-6 flex flex-col gap-8 justify-between  shadow-lg hover:shadow-[0_8px_30px_rgba(78,222,163,0.06)] hover:scale-[1.01] transition-all duration-300 relative overflow-hidden"
+                className="group  bg-[#002117]/30 backdrop-blur-md rounded-2xl border border-[#3c4a42]/30 hover:border-[#4edea3]/40 p-6 flex flex-col gap-8 justify-between  shadow-lg hover:shadow-[0_8px_30px_rgba(78,222,163,0.06)] hover:scale-[1.01] transition-all duration-300 relative overflow-hidden h-125"
             >
                 <div className="absolute -top-12 -right-12 w-24 h-24 bg-[#4edea3]/3 blur-[30px] rounded-full group-hover:scale-150 transition-transform duration-500"></div>
 
@@ -29,7 +29,7 @@ const MyIdeaCart = ({ user, idea }) => {
                         {startupName}
                     </h3>
 
-                    <p className="font-['Geist',sans-serif] text-lg leading-[22px] text-[#bbcabf] line-clamp-3">
+                    <p className="font-['Geist',sans-serif] text-lg leading-[22px] text-[#bbcabf] line-clamp-2">
                         {shortDescription}
                     </p>
                 </div>
@@ -47,8 +47,8 @@ const MyIdeaCart = ({ user, idea }) => {
                     </span>
                 </div>
 
-                <div className="pt-4 border-t border-[#3c4a42]/20 flex justify-between items-end relative z-10">
-                    <div className="flex flex-wrap gap-1.5 max-w-[70%]">
+                <div className=" border-t border-[#3c4a42]/20 flex flex-wrap md:flex-nowrap justify-between items-end relative z-10">
+                    <div className="flex flex-wrap  gap-1.5">
                         {(idea.tags || "")
                             .split(" ")
                             .filter(Boolean)
@@ -66,7 +66,7 @@ const MyIdeaCart = ({ user, idea }) => {
                             className="material-symbols-outlined text-[18px]"
                             style={{ fontVariationSettings: "'FILL' 1" }}
                         >
-                            View details
+                            Details
                         </span>
                     </Link>
                 </div>

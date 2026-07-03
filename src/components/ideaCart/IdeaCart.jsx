@@ -1,9 +1,20 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import Image from "next/image"
+import Link from "next/link"
+import React from "react"
 
 const IdeaCart = ({ idea }) => {
-    const { startupName, imageUrl, tags, shortDescription, detailedDescription, _id, username, userEmail, createdAt, userImage } = idea;
+    const {
+        startupName,
+        imageUrl,
+        tags,
+        shortDescription,
+        detailedDescription,
+        _id,
+        username,
+        userEmail,
+        createdAt,
+        userImage
+    } = idea
     return (
         <>
             <Link
@@ -16,16 +27,19 @@ const IdeaCart = ({ idea }) => {
                     <Image
                         height={500}
                         width={500}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt="Vertical Farming" src={imageUrl || null} />
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                        alt="Vertical Farming"
+                        src={imageUrl || null}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00170f] via-[#00170f]/50 to-transparent"></div>
                 </div>
                 <div className="space-y-10 relative z-10">
-                    <div className="flex justify-between items-center">
-                        <span className="bg-[#4edea3]/10 border border-[#4edea3]/25 px-2.5 py-0.5 rounded-full font-['JetBrains_Mono',monospace] text-md tracking-[0.05em] text-[#4edea3] font-bold uppercase">
+                    <div className="flex flex-col justify-between ">
+                        {/* <span className="bg-[#4edea3]/10 text-center border border-[#4edea3]/25 px-2.5 py-0.5 rounded-full font-['JetBrains_Mono',monospace] text-md tracking-[0.05em] text-[#4edea3] font-bold uppercase">
                             {tags}
-                        </span>
+                        </span> */}
                         <span className="font-['JetBrains_Mono',monospace] text-md text-[#86948a]">
-                          {createdAt ? new Date(createdAt).toLocaleDateString() : "Unknown date"}
+                            {createdAt ? new Date(createdAt).toLocaleDateString() : "Unknown date"}
                         </span>
                     </div>
 
@@ -51,26 +65,29 @@ const IdeaCart = ({ idea }) => {
                     </span>
                 </div>
 
-                <div className="pt-4 border-t border-[#3c4a42]/20 flex justify-between items-end relative z-10">
+                <div className="pt-4 border-t border-[#3c4a42]/20 flex justify-between flex-wrap gap-2 items-end relative z-10">
                     <div className="flex flex-wrap gap-1.5 max-w-[70%]">
-                        {
-                             idea.tags.split(' ').map((tag, index) => (
-                                <span key={index} className="font-['JetBrains_Mono',monospace] text-md text-[#86948a] border border-[#3c4a42]/30 px-2 py-0.5 rounded">
-                                    #{tag.trim()}
-                                </span>
-                            ))
-                        }
-                       
+                        {idea.tags.split(" ").map((tag, index) => (
+                            <span
+                                key={index}
+                                className="font-['JetBrains_Mono',monospace] text-md text-[#86948a] border border-[#3c4a42]/30 px-2 py-0.5 rounded"
+                            >
+                                #{tag.trim()}
+                            </span>
+                        ))}
                     </div>
                     <button className="flex items-center gap-1 text-[#4edea3]">
-                        <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>View details</span>
-
+                        <span
+                            className="px-2  bg-gradient-to-r from-[#4edea3] to-[#12a970] text-[#003824] font-['JetBrains_Mono',monospace] font-bold   tracking-wider  rounded-xl shadow-[0_0_20px_rgba(78,222,163,0.25)] hover:shadow-[0_0_30px_rgba(78,222,163,0.45)] active:scale-[0.98] transition-all"
+                            style={{ fontVariationSettings: "'FILL' 1" }}
+                        >
+                            Details
+                        </span>
                     </button>
                 </div>
             </Link>
-
         </>
-    );
-};
+    )
+}
 
-export default IdeaCart;
+export default IdeaCart

@@ -7,7 +7,7 @@ const TrendingIdeaCart = ({ idea }) => {
 
     return (
         <>
-            <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/30 transition-all duration-500 rounded-3xl p-8 md:p-10 flex flex-col justify-between relative group overflow-hidden h-125 cursor-pointer">
+            <div className="bg-[#003123]/10 backdrop-blur-xl border border-[#4edea3]/10 hover:border-[#4edea3]/30 transition-all duration-500 rounded-3xl p-3 md:p-4 lg:p-8 flex flex-col justify-between relative group overflow-hidden h-125 cursor-pointer">
                 <div className="flex flex-wrap">
                     {/* Top Content Block */}
                     <div className="relative z-10  ">
