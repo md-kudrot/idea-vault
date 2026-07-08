@@ -1,6 +1,6 @@
 # Idea Vault
 
-Live site (client): https://idea-vault-one-blue.vercel.app/
+Live site (client): https://idea-vault-one-blue.vercel.app
 
 <img width="1898" height="742" alt="image" src="https://github.com/user-attachments/assets/ce6f6d37-1a2e-4dc4-9572-6864e1508377" />
 
